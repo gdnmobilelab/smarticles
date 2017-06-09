@@ -19,7 +19,10 @@
   "devDependencies": {
     "fs-extra": "^3.0.1",
     "handlebars": "^4.0.10",
+    "node-cmd": "^3.0.0",
     "node-sass": "^4.5.3",
+    "node-static": "^0.7.9",
+    "node-watch": "^0.5.4",
     "sass": "^1.0.0-beta.1",
     "sync-request": "^4.1.0"
   }
