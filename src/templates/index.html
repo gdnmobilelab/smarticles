@@ -2,22 +2,22 @@
     {{#each atoms}}
         <li class='atom atom--{{ type }}'>
             {{#switch type}}
-                {{#case "Text"}}
+                {{#case "text"}}
                     {{> atoms/text }}
                 {{/case}}
-                {{#case "Quote"}}
+                {{#case "quote"}}
                     {{> atoms/quote }}
                 {{/case}}
-                {{#case "Image"}}
+                {{#case "image"}}
                     {{> atoms/image }}
                 {{/case}}
-                {{#case "Tweet"}}
+                {{#case "tweet"}}
                     {{> atoms/tweet }}
                 {{/case}}
-                {{#case "Video"}}
+                {{#case "video"}}
                     {{> atoms/video }}
                 {{/case}}
-                {{#case "Graphic"}}
+                {{#case "graphic"}}
                     {{> atoms/graphic }}
                 {{/case}}
             {{/switch}}
