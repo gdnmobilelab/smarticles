@@ -18,6 +18,7 @@
   "homepage": "https://github.com/gdnmobilelab/smarticles#readme",
   "devDependencies": {
     "fs-extra": "^3.0.1",
+    "glob-fs": "^0.1.6",
     "handlebars": "^4.0.10",
     "node-cmd": "^3.0.0",
     "node-sass": "^4.5.3",
