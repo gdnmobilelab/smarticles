@@ -1,3 +1,26 @@
-hey
-
-{{> head }}
+<ul class='atoms'>
+    {{#each atoms}}
+        <li class='atom atom--{{ type }}'>
+            {{#switch type}}
+                {{#case "Text"}}
+                    {{> atoms/text }}
+                {{/case}}
+                {{#case "Quote"}}
+                    {{> atoms/quote }}
+                {{/case}}
+                {{#case "Image"}}
+                    {{> atoms/image }}
+                {{/case}}
+                {{#case "Tweet"}}
+                    {{> atoms/tweet }}
+                {{/case}}
+                {{#case "Video"}}
+                    {{> atoms/video }}
+                {{/case}}
+                {{#case "Graphic"}}
+                    {{> atoms/graphic }}
+                {{/case}}
+            {{/switch}}
+        </li>
+    {{/each}}
+</ul>
