@@ -32,5 +32,12 @@ handlebars.registerHelper("case", function(value, options) {
 });
 
 var template = handlebars.compile(html);
-
 fs.writeFileSync('.build/index.html', template({atoms: data}));
+
+var css = sass.renderSync({
+    file: 'src/sass/styles.scss'
+}).css.toString('utf8');
+
+fs.writeFileSync('.build/styles.css', css);
+
+fs.copySync('src/assets/', '.build/assets/');

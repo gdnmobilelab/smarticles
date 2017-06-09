@@ -1,26 +1,37 @@
-<ul class='atoms'>
-    {{#each atoms}}
-        <li class='atom atom--{{ type }}'>
-            {{#switch type}}
-                {{#case "text"}}
-                    {{> atoms/text }}
-                {{/case}}
-                {{#case "quote"}}
-                    {{> atoms/quote }}
-                {{/case}}
-                {{#case "image"}}
-                    {{> atoms/image }}
-                {{/case}}
-                {{#case "tweet"}}
-                    {{> atoms/tweet }}
-                {{/case}}
-                {{#case "video"}}
-                    {{> atoms/video }}
-                {{/case}}
-                {{#case "graphic"}}
-                    {{> atoms/graphic }}
-                {{/case}}
-            {{/switch}}
-        </li>
-    {{/each}}
-</ul>
+<!DOCTYPE html>
+<html>
+    {{> structure/head }}
+
+<body>
+    <ul class='atoms'>
+        {{#each atoms}}
+            <li class='atom atom--{{ type }}'>
+                <div class='atom__wrapper'>
+                    <h2 class='atom__title'>{{ title }}</h2>
+                    {{#switch type}}
+                        {{#case "text"}}
+                            {{> atoms/text }}
+                        {{/case}}
+                        {{#case "quote"}}
+                            {{> atoms/quote }}
+                        {{/case}}
+                        {{#case "image"}}
+                            {{> atoms/image }}
+                        {{/case}}
+                        {{#case "tweet"}}
+                            {{> atoms/tweet }}
+                        {{/case}}
+                        {{#case "video"}}
+                            {{> atoms/video }}
+                        {{/case}}
+                        {{#case "graphic"}}
+                            {{> atoms/graphic }}
+                        {{/case}}
+                    {{/switch}}
+                </div>
+                <span class='atom__timestamp'>{{ time }} {{ date }}</span>
+            </li>
+        {{/each}}
+    </ul>
+</body>
+</html>

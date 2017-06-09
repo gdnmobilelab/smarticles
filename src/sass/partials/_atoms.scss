@@ -1,0 +1,39 @@
+.atoms {
+    max-width: 400px;
+    margin: 0 auto;
+    list-style: none;
+    padding: 0;
+    font-family: 'Guardian Sans Web';
+}
+
+.atom {
+    position: relative;
+    margin-bottom: 24px;
+}
+
+.atom__wrapper {
+    border: 2px solid $c-light-grey;
+    padding: 6px 6px 24px;
+    font-size: 16px;
+    line-height: 22px;
+    color: $c-black;
+}
+
+.atom__title {
+    font-size: 22px;
+    font-weight: normal;
+    margin: 0;
+    margin-bottom: 4px;
+}
+
+.atom__timestamp {
+    margin-top: 6px;
+    display: block;
+    color: $c-grey;
+    font-size: 14px;
+}
+
+// remove this at some point
+.atom__wrapper > * {
+    max-width: 100%;
+}
