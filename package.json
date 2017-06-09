@@ -1,0 +1,26 @@
+{
+  "name": "smarticles",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gdnmobilelab/smarticles.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gdnmobilelab/smarticles/issues"
+  },
+  "homepage": "https://github.com/gdnmobilelab/smarticles#readme",
+  "devDependencies": {
+    "fs-extra": "^3.0.1",
+    "handlebars": "^4.0.10",
+    "node-sass": "^4.5.3",
+    "sass": "^1.0.0-beta.1",
+    "sync-request": "^4.1.0"
+  }
+}
