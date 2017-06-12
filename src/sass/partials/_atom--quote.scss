@@ -1,0 +1,18 @@
+.atom-quote__block {
+    margin: 0;
+    quotes: "“" "”" "‘" "’";
+
+    &:before {
+        content: open-quote;
+    }
+
+    &:after {
+        content: close-quote;
+    }
+}
+
+.atom-quote__cite {
+    display: block;
+    color: $c-light-blue;
+    font-style: normal;
+}
