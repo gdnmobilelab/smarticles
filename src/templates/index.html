@@ -3,11 +3,13 @@
     {{> structure/head }}
 
 <body>
+    {{> includes/devbar }}
+
     {{> includes/header }}
 
     <ul class='atoms'>
         {{#each atoms}}
-            <li class='atom atom--{{ type }}'>
+            <li class='atom atom--{{ type }}' data-timestamp='{{ timeStamp }}'>
                 <div class='atom__wrapper'>
                     {{#if title}}
                         <h2 class='atom__title'>{{ title }}</h2>
