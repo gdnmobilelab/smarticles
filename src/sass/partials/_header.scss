@@ -1,0 +1,26 @@
+.header {
+    background-color: $c-light-blue;
+    color: $c-white;
+    padding-bottom: 48px;
+    margin-bottom: -24px;
+    font-family: 'Guardian Sans Web';
+}
+
+.header__inner {
+    max-width: 400px;
+    padding: 0 10px;
+    margin: 0 auto;
+}
+
+.header__title {
+    margin: 0;
+    padding: 6px 0 12px;
+    font-size: 38px;
+    font-weight: bold;
+}
+
+.header__stub {
+    margin-top: 0;
+    font-size: 16px;
+    line-height: 22px;
+}
