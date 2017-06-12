@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/gdnmobilelab/smarticles#readme",
   "devDependencies": {
+    "browserify": "^14.4.0",
+    "deasync": "^0.1.10",
     "fs-extra": "^3.0.1",
     "glob-fs": "^0.1.6",
     "handlebars": "^4.0.10",
