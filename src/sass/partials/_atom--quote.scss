@@ -4,10 +4,12 @@
 
     &:before {
         content: open-quote;
+        font-family: 'Guardian Sans Web';
     }
 
     &:after {
         content: close-quote;
+        font-family: 'Guardian Sans Web';
     }
 }
 

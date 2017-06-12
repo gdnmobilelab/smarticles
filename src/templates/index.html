@@ -9,7 +9,9 @@
         {{#each atoms}}
             <li class='atom atom--{{ type }}'>
                 <div class='atom__wrapper'>
-                    <h2 class='atom__title'>{{ title }}</h2>
+                    {{#if title}}
+                        <h2 class='atom__title'>{{ title }}</h2>
+                    {{/if}}
                     {{#switch type}}
                         {{#case "text"}}
                             {{> atoms/text }}

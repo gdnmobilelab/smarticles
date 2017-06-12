@@ -12,8 +12,9 @@
 }
 
 .atom__wrapper {
+    position: relative;
     border: 2px solid $c-light-grey;
-    padding: 8px 6px 24px;
+    padding: 4px 6px 24px;
     font-size: 16px;
     line-height: 22px;
     color: $c-black;
@@ -24,7 +25,8 @@
     font-size: 22px;
     font-weight: normal;
     margin: 0;
-    margin-bottom: 4px;
+    padding-top: 4px;
+    padding-bottom: 4px;
 }
 
 .atom__timestamp {
@@ -32,9 +34,4 @@
     display: block;
     color: $c-grey;
     font-size: 14px;
-}
-
-// remove this at some point
-.atom__wrapper > * {
-    max-width: 100%;
 }
