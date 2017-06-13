@@ -13,14 +13,43 @@ function createTimeStamps(atoms) {
     return atoms;
 }
 
+function orderByGroup(atoms) {
+    // put all atoms into objects
+    var groupedAtoms = {};
+    var nonGroupedKey = 0;
+
+    for (var i in atoms) {
+        if (atoms[i].group) {
+            if (groupedAtoms[atoms[i].group]) {
+                groupedAtoms[atoms[i].group].atoms[Object.keys(groupedAtoms[atoms[i].group].atoms).length + 1] = atoms[i];
+            } else {
+                groupedAtoms[atoms[i].group] = {};
+                groupedAtoms[atoms[i].group].groupName = atoms[i].group;
+                groupedAtoms[atoms[i].group].groupType = atoms[i].groupType;
+                
+                groupedAtoms[atoms[i].group].atoms = {};
+                groupedAtoms[atoms[i].group].atoms[0] = atoms[i];
+            }
+        } else {
+            groupedAtoms['group' + nonGroupedKey] = {atoms: {
+                0: atoms[i]
+            }};
+            nonGroupedKey++;
+        }
+    }
+
+    return groupedAtoms;
+}
+
 function sortDevData() {
     var days = {};
 
     for (var i in data) {
         if (i !== 'Master' && i !== 'Stubs') {
             var atoms = createTimeStamps(data[i]);
+                atoms = orderByGroup(data[i]);
             days[i] = {
-                atoms: atoms
+                groups: atoms
             }
         }
     }
@@ -34,11 +63,15 @@ module.exports = function() {
     // Production data
     // data = data.sheets.Master;
     // createTimeStamps(data);
+    // orderByGroup(data);
 
     // Dev Data
     data = data.sheets;
     sortDevData();
-    console.log(data);
+    
+    fs.writeFileSync('.build/data.json', JSON.stringify(data.days['08/05/2017']));
+
+    // console.log(data.days['08/05/2017']);
 
     return data;
 };
