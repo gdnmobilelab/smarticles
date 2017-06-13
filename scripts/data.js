@@ -18,6 +18,7 @@ function orderByGroup(atoms) {
     var groupedAtoms = {};
     var nonGroupedKey = 0;
 
+    // Fix the hell out of this hot hot mess
     for (var i in atoms) {
         if (atoms[i].group) {
             if (groupedAtoms[atoms[i].group]) {
