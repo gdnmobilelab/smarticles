@@ -6,13 +6,14 @@ module.exports = {
     init: function() {
         atoms = this.getAtoms();
         this.setSliders(this.getDates());
+        this.filterAtoms();
         this.bindings();
     },
 
     getAtoms: function() {
         var times = [];
 
-        $('.atom').each(function(index, el) {
+        $('.atoms--visible .atom').each(function(i, el) {
             times.push({
                 timeStamp: $(el).attr('data-timestamp')
             });
@@ -22,17 +23,11 @@ module.exports = {
     },
 
     getDates: function() {
-        dates = new Array();
+        dates = [];
 
-        $.each(atoms, function(i, val) {
-            var date = new Date(val.timeStamp).setHours(0, 0, 0, 0);
-
-            if (dates.indexOf(date) === -1) {
-                dates.push(date);
-            }
-        });
-
-        dates.push(new Date().setHours(0, 0, 0, 0));
+        $('.atoms').each(function(i, el) {
+            dates.push(this.usDate($(el).attr('data-date')));
+        }.bind(this));
 
         return dates;
     },
@@ -60,18 +55,31 @@ module.exports = {
         $(el).prev().find('.devbar__value').text(new Date(dates[val]).toDateString());
     },
 
-    filterAtoms: function() {
-        $('.atom--hidden').removeClass('atom--hidden');
+    usDate: function(date) {
+        date = date.split('/');
+        return new Date(date[1] + '/' + date[0] + '/' + date[2]);
+    },
 
+    filterAtoms: function() {
         var start = new Date(dates[$('.devbar__slider--start').val()]);
         var end = new Date(dates[$('.devbar__slider--end').val()]);
 
-        $('.atom').each(function(index, el) {
+        // Show correct Day
+        $('.atoms--visible').removeClass('atoms--visible');
+        $('.atoms').each(function(i, el) {
+            if (end.getTime() == this.usDate($(el).attr('data-date')).getTime()) {
+                $(el).addClass('atoms--visible');
+            }
+        }.bind(this));
+
+        // Show correct Atoms
+        $('.atom--hidden').removeClass('atom--hidden');
+        $('.atoms--visible .atom').each(function(index, el) {
             var date = new Date($(el).attr('data-timestamp'));
 
-            if (end < date || start > date) {
+            if (start > date) {
                 $(el).addClass('atom--hidden');
             }
-        })
+        });
     }
 }

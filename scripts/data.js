@@ -23,7 +23,6 @@ function sortDevData() {
                 atoms: atoms
             }
         }
-        // console.log(days);
     }
 
     data = {days: days};

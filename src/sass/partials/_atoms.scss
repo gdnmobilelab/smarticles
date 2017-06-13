@@ -4,6 +4,11 @@
     list-style: none;
     padding: 0 10px;
     font-family: 'Guardian Sans Web';
+    display: none;
+}
+
+.atoms--visible {
+    display: block;
 }
 
 .atom {

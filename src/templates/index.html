@@ -7,8 +7,8 @@
 
     {{> includes/header }}
 
-    <ul class='atoms'>
-        {{#each days}}
+    {{#each days}}
+        <ul class='atoms' data-date='{{ @key }}'>
             {{#each atoms}}
                 <li class='atom atom--{{ type }}' data-timestamp='{{ timeStamp }}'>
                     <div class='atom__wrapper'>
@@ -39,8 +39,8 @@
                     <span class='atom__timestamp'>{{ time }} {{ date }}</span>
                 </li>
             {{/each}}
-        {{/each}}
-    </ul>
+        </ul>
+    {{/each}}
 
     <script type="text/javascript" src="./main.js"></script>
 </body>
