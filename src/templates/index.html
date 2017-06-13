@@ -8,35 +8,37 @@
     {{> includes/header }}
 
     <ul class='atoms'>
-        {{#each atoms}}
-            <li class='atom atom--{{ type }}' data-timestamp='{{ timeStamp }}'>
-                <div class='atom__wrapper'>
-                    {{#if title}}
-                        <h2 class='atom__title'>{{ title }}</h2>
-                    {{/if}}
-                    {{#switch type}}
-                        {{#case "text"}}
-                            {{> atoms/text }}
-                        {{/case}}
-                        {{#case "quote"}}
-                            {{> atoms/quote }}
-                        {{/case}}
-                        {{#case "image"}}
-                            {{> atoms/image }}
-                        {{/case}}
-                        {{#case "tweet"}}
-                            {{> atoms/tweet }}
-                        {{/case}}
-                        {{#case "video"}}
-                            {{> atoms/video }}
-                        {{/case}}
-                        {{#case "graphic"}}
-                            {{> atoms/graphic }}
-                        {{/case}}
-                    {{/switch}}
-                </div>
-                <span class='atom__timestamp'>{{ time }} {{ date }}</span>
-            </li>
+        {{#each days}}
+            {{#each atoms}}
+                <li class='atom atom--{{ type }}' data-timestamp='{{ timeStamp }}'>
+                    <div class='atom__wrapper'>
+                        {{#if title}}
+                            <h2 class='atom__title'>{{ title }}</h2>
+                        {{/if}}
+                        {{#switch type}}
+                            {{#case "text"}}
+                                {{> atoms/text }}
+                            {{/case}}
+                            {{#case "quote"}}
+                                {{> atoms/quote }}
+                            {{/case}}
+                            {{#case "image"}}
+                                {{> atoms/image }}
+                            {{/case}}
+                            {{#case "tweet"}}
+                                {{> atoms/tweet }}
+                            {{/case}}
+                            {{#case "video"}}
+                                {{> atoms/video }}
+                            {{/case}}
+                            {{#case "graphic"}}
+                                {{> atoms/graphic }}
+                            {{/case}}
+                        {{/switch}}
+                    </div>
+                    <span class='atom__timestamp'>{{ time }} {{ date }}</span>
+                </li>
+            {{/each}}
         {{/each}}
     </ul>
 

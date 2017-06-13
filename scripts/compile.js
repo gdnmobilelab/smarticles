@@ -16,7 +16,6 @@ var html = fs.readFileSync('src/templates/index.html', 'utf8');
 var partials = glob.readdirSync('src/templates/**/*.html');
 partials.forEach(function (partial) {
     var name = partial.replace('src/templates/', '').split('.')[0];
-    console.log(name);
     var template = fs.readFileSync(partial, 'utf8');
     handlebars.registerPartial(name, template);
 });
@@ -35,7 +34,7 @@ handlebars.registerHelper("case", function(value, options) {
 });
 
 var template = handlebars.compile(html);
-fs.writeFileSync('.build/index.html', template({atoms: data}));
+fs.writeFileSync('.build/index.html', template(data));
 
 // CSS
 var css = sass.renderSync({

@@ -4,27 +4,42 @@ var config = require('./config.js').config;
 
 var data;
 
-function createTimeStamps() {
-    for (var i in data) {
-        var date = data[i].date.split('/');
-        data[i].timeStamp = new Date(date[1] + '/' + date[0] + '/' + date[2] + ' ' + data[i].time);
+function createTimeStamps(atoms) {
+    for (var i in atoms) {
+        var date = atoms[i].date.split('/');
+        atoms[i].timeStamp = new Date(date[1] + '/' + date[0] + '/' + date[2] + ' ' + atoms[i].time);
     }
+
+    return atoms;
 }
 
-function sortByReverseDate() {
-    data.sort(function(a,b) {
-        console.log(a.timeStamp);
-        return b.timeStamp - a.timeStamp;
-    });
+function sortDevData() {
+    var days = {};
+
+    for (var i in data) {
+        if (i !== 'Master' && i !== 'Stubs') {
+            var atoms = createTimeStamps(data[i]);
+            days[i] = {
+                atoms: atoms
+            }
+        }
+        // console.log(days);
+    }
+
+    data = {days: days};
 }
 
 module.exports = function() {
     data = request('GET', config.dataUrl);
     data = JSON.parse(data.getBody('utf8'));
-    data = data.sheets.Sheet1;
+    // Production data
+    // data = data.sheets.Master;
+    // createTimeStamps(data);
 
-    createTimeStamps();
-    sortByReverseDate();
+    // Dev Data
+    data = data.sheets;
+    sortDevData();
+    console.log(data);
 
     return data;
 };

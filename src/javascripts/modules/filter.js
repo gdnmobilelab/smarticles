@@ -32,7 +32,7 @@ module.exports = {
             }
         });
 
-        dates.reverse();
+        dates.push(new Date().setHours(0, 0, 0, 0));
 
         return dates;
     },
@@ -53,9 +53,25 @@ module.exports = {
 
     sliderChange: function(el) {;
         this.setSliderLabel(el, $(el).val());
+        this.filterAtoms();
     },
 
     setSliderLabel: function(el, val) {
         $(el).prev().find('.devbar__value').text(new Date(dates[val]).toDateString());
+    },
+
+    filterAtoms: function() {
+        $('.atom--hidden').removeClass('atom--hidden');
+
+        var start = new Date(dates[$('.devbar__slider--start').val()]);
+        var end = new Date(dates[$('.devbar__slider--end').val()]);
+
+        $('.atom').each(function(index, el) {
+            var date = new Date($(el).attr('data-timestamp'));
+
+            if (end < date || start > date) {
+                $(el).addClass('atom--hidden');
+            }
+        })
     }
 }

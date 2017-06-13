@@ -11,6 +11,10 @@
     margin-bottom: 24px;
 }
 
+.atom--hidden {
+    display: none;
+}
+
 .atom__wrapper {
     position: relative;
     border: 2px solid $c-light-grey;
