@@ -18,7 +18,6 @@ function orderByGroup(atoms) {
     var groupedAtoms = {};
     var nonGroupedKey = 0;
 
-    // Fix the hell out of this hot hot mess
     for (var i in atoms) {
         var groupName = atoms[i].group;
 
@@ -29,7 +28,7 @@ function orderByGroup(atoms) {
                 groupedAtoms[groupName] = {};
                 groupedAtoms[groupName].groupName = groupName;
                 groupedAtoms[groupName].groupType = atoms[i].groupType;
-                
+
                 groupedAtoms[groupName].atoms = {};
                 groupedAtoms[groupName].atoms[0] = atoms[i];
             }
