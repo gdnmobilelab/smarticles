@@ -24,10 +24,11 @@
     line-height: 22px;
     color: $c-black;
     background-color: $c-light-grey;
+    display: none;
 }
 
-.atom--hidden {
-    display: none;
+.atom--visible {
+    display: block;
 }
 
 .atom__title {

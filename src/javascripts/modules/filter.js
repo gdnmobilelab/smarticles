@@ -73,25 +73,24 @@ module.exports = {
             }
         }.bind(this));
 
-        groups.collapseGroups();
-
         // Show correct Atoms
-        $('.atom--hidden').removeClass('atom--hidden');
+        $('.atom--visible').removeClass('atom--visible');
         $('.atoms--visible .atom').each(function(index, el) {
             var date = new Date($(el).attr('data-timestamp'));
 
-            if (start > date) {
-                $(el).addClass('atom--hidden');
+            if (start < date) {
+                $(el).addClass('atom--visible');
             }
         });
+
+        groups.collapseGroups();
 
         // Hide hidden groups
         $('.group--hidden').removeClass('group--hidden');
         $('.atoms--visible .group').each(function(index, el) {
-            var numberOfAtoms = $(el).find('.atom').length;
-            var hiddenAtoms = $(el).find('.atom--hidden').length;
-
-            if (numberOfAtoms === hiddenAtoms) {
+            var hiddenAtoms = $(el).find('.atom--visible').length;
+            console.log(hiddenAtoms);
+            if (hiddenAtoms === 0) {
                 $(el).addClass('group--hidden');
             }
         });

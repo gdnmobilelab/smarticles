@@ -16,20 +16,19 @@ module.exports = {
         $(el).addClass('group--collapsed');
         $(el).removeClass('group--expanded');
 
-        $(el).find('.atom').each(function(i, el) {
+        console.log($(el).children('.atom--visible'));
+        console.log($(el).find('.atom--visible'));
+        $(el).children('.atom--visible').each(function(i, el) {
             if (i !== 0) {
-                if ($(el).hasClass('atom--hidden') == true || $(el).prev().hasClass('atom--hidden') == true) {
-                    $(el).css({
-                        'margin-top': ''
-                    });
-                } else {
-                    $(el).css({
-                        'margin-top': '-' + ($(el).height() + 18) + 'px',
-                        'z-index': '-' + (i + 1)
-                    });
-                }
+                $(el).css({
+                    'margin-top': '-' + ($(el).height() + 18) + 'px',
+                    'z-index': '-' + i
+                });
             } else {
-                console.log('skipping an atom');
+                $(el).css({
+                    'margin-top': '',
+                    'z-index': ''
+                });
             }
         });
     },
