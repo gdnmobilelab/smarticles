@@ -20,16 +20,18 @@ function orderByGroup(atoms) {
 
     // Fix the hell out of this hot hot mess
     for (var i in atoms) {
+        var groupName = atoms[i].group;
+
         if (atoms[i].group) {
-            if (groupedAtoms[atoms[i].group]) {
-                groupedAtoms[atoms[i].group].atoms[Object.keys(groupedAtoms[atoms[i].group].atoms).length + 1] = atoms[i];
+            if (groupedAtoms[groupName]) {
+                groupedAtoms[groupName].atoms[Object.keys(groupedAtoms[groupName].atoms).length + 1] = atoms[i];
             } else {
-                groupedAtoms[atoms[i].group] = {};
-                groupedAtoms[atoms[i].group].groupName = atoms[i].group;
-                groupedAtoms[atoms[i].group].groupType = atoms[i].groupType;
+                groupedAtoms[groupName] = {};
+                groupedAtoms[groupName].groupName = groupName;
+                groupedAtoms[groupName].groupType = atoms[i].groupType;
                 
-                groupedAtoms[atoms[i].group].atoms = {};
-                groupedAtoms[atoms[i].group].atoms[0] = atoms[i];
+                groupedAtoms[groupName].atoms = {};
+                groupedAtoms[groupName].atoms[0] = atoms[i];
             }
         } else {
             groupedAtoms['group' + nonGroupedKey] = {atoms: {
