@@ -21,7 +21,7 @@ module.exports = {
         $(el).children('.atom--visible').each(function(i, el) {
             if (i !== 0) {
                 $(el).css({
-                    'margin-top': '-' + ($(el).height() + 18) + 'px',
+                    'margin-top': '-' + ($(el).height() + 20) + 'px',
                     'z-index': '-' + i
                 });
             } else {

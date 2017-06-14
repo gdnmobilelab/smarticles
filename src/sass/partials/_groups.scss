@@ -27,7 +27,7 @@
     margin-bottom: 24px;
 
     .atom {
-        margin-bottom: -2px;
+        margin-bottom: 0px;
     }
 
     .group__expand-button {
@@ -36,8 +36,16 @@
 }
 
 .group--collapsed {
-    .atom {
-        // margin-top: -200px;
+    @for $i from 2 through 8 {
+        .atom--visible:nth-of-type(#{$i}) {
+            background-color: darken($c-light-grey, $i * 2%);
+            transform: scale(-($i) * 0.02 + 1) translateY(-($i) * 2%);
+            transform-origin: bottom;
+
+            .atom__timestamp {
+                opacity: 0;
+            }
+        }
     }
 }
 
@@ -46,7 +54,7 @@
     opacity: 0.5;
 
     .atom {
-        margin-bottom: -2px;
+        margin-bottom: 0px;
     }
 
     .group__expand-button {
