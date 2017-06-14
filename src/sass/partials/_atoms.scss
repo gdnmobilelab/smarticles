@@ -15,6 +15,7 @@
 .atom {
     position: relative;
     margin-bottom: 24px;
+    transition: ease-out 0.5s margin-top;
 }
 
 .atom--hidden {
@@ -24,7 +25,7 @@
 .atom__wrapper {
     position: relative;
     border: 2px solid $c-light-grey;
-    padding: 4px 6px 24px;
+    padding: 4px 6px;
     font-size: 16px;
     line-height: 22px;
     color: $c-black;
@@ -40,8 +41,9 @@
 }
 
 .atom__timestamp {
-    margin-top: 6px;
+    margin-top: 12px;
     display: block;
     color: $c-grey;
     font-size: 14px;
+    line-height: 1;
 }

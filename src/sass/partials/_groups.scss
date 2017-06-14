@@ -1,0 +1,35 @@
+.group__title {
+    font-family: 'Guardian Sans Web';
+    font-size: 22px;
+    font-weight: bold;
+    color: $c-light-blue;
+    margin: 0 0 4px;
+}
+
+.group__expand-button {
+    font-family: 'Guardian Sans Web';
+    color: $c-white;
+    background-color: $c-light-blue;
+    width: 120px;
+    padding: 8px 12px;
+    margin: -12px 0 24px;
+    border-radius: 24px;
+}
+
+.group--expanded {
+    margin-bottom: 24px;
+
+    .atom {
+        margin-bottom: -2px;
+    }
+
+    .group__expand-button {
+        display: none;
+    }
+}
+
+.group--collapsed {
+    .atom {
+        // margin-top: -200px;
+    }
+}
