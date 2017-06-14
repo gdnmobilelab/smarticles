@@ -2,8 +2,11 @@
     font-family: 'Guardian Sans Web';
     font-size: 22px;
     font-weight: bold;
-    color: $c-light-blue;
-    margin: 0 0 4px;
+    color: $c-white;
+    margin: 0;
+    background-color: $c-blue;
+    padding: 6px 6px 12px;
+    margin-bottom: -2px;
 }
 
 .group__expand-button {
@@ -14,6 +17,10 @@
     padding: 8px 12px;
     margin: -12px 0 24px;
     border-radius: 24px;
+}
+
+.group {
+    overflow: hidden;
 }
 
 .group--expanded {
@@ -32,4 +39,21 @@
     .atom {
         // margin-top: -200px;
     }
+}
+
+.group--additional {
+    margin-bottom: 24px;
+    opacity: 0.5;
+
+    .atom {
+        margin-bottom: -2px;
+    }
+
+    .group__expand-button {
+        display: none;
+    }
+}
+
+.group--hidden {
+    display: none;
 }

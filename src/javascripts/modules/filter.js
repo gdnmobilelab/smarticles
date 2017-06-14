@@ -1,3 +1,4 @@
+var groups = require('../modules/groups.js');
 var $ = require('../vendor/jquery.js');
 
 var atoms, dates;
@@ -72,6 +73,8 @@ module.exports = {
             }
         }.bind(this));
 
+        groups.collapseGroups();
+
         // Show correct Atoms
         $('.atom--hidden').removeClass('atom--hidden');
         $('.atoms--visible .atom').each(function(index, el) {
@@ -79,6 +82,17 @@ module.exports = {
 
             if (start > date) {
                 $(el).addClass('atom--hidden');
+            }
+        });
+
+        // Hide hidden groups
+        $('.group--hidden').removeClass('group--hidden');
+        $('.atoms--visible .group').each(function(index, el) {
+            var numberOfAtoms = $(el).find('.atom').length;
+            var hiddenAtoms = $(el).find('.atom--hidden').length;
+
+            if (numberOfAtoms === hiddenAtoms) {
+                $(el).addClass('group--hidden');
             }
         });
     }

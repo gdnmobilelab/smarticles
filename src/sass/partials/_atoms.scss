@@ -6,6 +6,8 @@
     font-family: 'Guardian Sans Web';
     display: none;
     margin-top: -64px;
+    z-index: 5;
+    position: relative
 }
 
 .atoms--visible {
@@ -16,28 +18,23 @@
     position: relative;
     margin-bottom: 24px;
     transition: ease-out 0.5s margin-top;
+    position: relative;
+    padding: 4px 6px;
+    font-size: 16px;
+    line-height: 22px;
+    color: $c-black;
+    background-color: $c-light-grey;
 }
 
 .atom--hidden {
     display: none;
 }
 
-.atom__wrapper {
-    position: relative;
-    border: 2px solid $c-light-grey;
-    padding: 4px 6px;
-    font-size: 16px;
-    line-height: 22px;
-    color: $c-black;
-    background-color: $c-white;
-}
-
 .atom__title {
-    font-size: 22px;
-    font-weight: normal;
+    font-size: 16px;
+    font-weight: bold;
+    color: $c-light-blue;
     margin: 0;
-    padding-top: 4px;
-    padding-bottom: 4px;
 }
 
 .atom__timestamp {
