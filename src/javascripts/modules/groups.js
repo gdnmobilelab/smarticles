@@ -21,7 +21,7 @@ module.exports = {
         $(el).children('.atom--visible').each(function(i, el) {
             if (i !== 0) {
                 $(el).css({
-                    'margin-top': '-' + ($(el).height() + 26) + 'px',
+                    'margin-top': '-' + ($(el).height() + 4) + 'px',
                     'z-index': '-' + i
                 });
                 $(el).attr('data-shrink', i);
