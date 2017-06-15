@@ -36,11 +36,10 @@
 }
 
 .group--collapsed {
-    @for $i from 2 through 8 {
-        .atom--visible:nth-of-type(#{$i}) {
+    @for $i from 1 through 8 {
+        .atom--visible[data-shrink='#{$i}'] {
             background-color: darken($c-light-grey, $i * 2%);
-            transform: scale(-($i) * 0.02 + 1) translateY(-($i) * 2%);
-            transform-origin: bottom;
+            transform: scale(-($i) * 0.02 + 1, 1);
 
             .atom__timestamp {
                 opacity: 0;

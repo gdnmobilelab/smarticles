@@ -21,14 +21,16 @@ module.exports = {
         $(el).children('.atom--visible').each(function(i, el) {
             if (i !== 0) {
                 $(el).css({
-                    'margin-top': '-' + ($(el).height() + 20) + 'px',
+                    'margin-top': '-' + ($(el).height() + 26) + 'px',
                     'z-index': '-' + i
                 });
+                $(el).attr('data-shrink', i);
             } else {
                 $(el).css({
                     'margin-top': '',
                     'z-index': ''
                 });
+                $(el).attr('data-shrink', '');
             }
         });
     },
@@ -49,6 +51,7 @@ module.exports = {
             $(el).css({
                 'margin-top': ''
             });
+            $(el).attr('data-shrink', '');
         });
     }
 }
