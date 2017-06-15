@@ -20,10 +20,6 @@ module.exports = {
             then = new Date(timeStamp),
             delta = parseInt((now - then) / 1000, 10);
 
-//        return now + ' <br />' + then;
-
-    console.log(this.isYesterday(then, now));
-
         if (delta < 0) {
             return 'In the future?!?!'
         } else if (delta < 55) {
@@ -38,10 +34,10 @@ module.exports = {
             return hours + ' hour' + (hours > 1 ? 's': '') + ' ago';
 
         } else if (this.isYesterday(then, now)) {
-            return 'yesterday'
+            return 'Yesterday'
 
-        } else if (delta < 5 * 24 * 60 * 60) { // less than five days
-            return 'on ' + this.getDay(then);
+        } else if (delta < 7 * 24 * 60 * 60) { // less than five days
+            return 'On ' + this.getDay(then);
 
         } else {
             return this.getDay(then) + ' ' + then.getDate() + ' ' + this.getMonth(then) + ' ' + then.getFullYear();
@@ -57,8 +53,6 @@ module.exports = {
         var yesterday = new Date(now);
             yesterday.setDate(now.getDate() - 1);
 
-        console.log(date.toDateString());
-        console.log(yesterday.toDateString());
         return date.toDateString() === yesterday.toDateString() ? true : false;
     },
 

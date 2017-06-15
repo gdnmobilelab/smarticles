@@ -15,13 +15,11 @@
         <ul class='atoms' data-date='{{ @key }}'>
             {{#each groups}}
                 <div class='group group--{{ groupType }}'>
-                    {{#if groupName }}
-                        <h1 class='group__title'>{{ groupName }}</h1>
-                    {{/if}}
-
                     {{#each atoms}}
                         <li class='atom atom--{{ type }}' data-timestamp='{{ timeStamp }}'>
-                            {{#if title}}
+                            {{#if ../groupName}}
+                                <h2 class='atom__title'>{{ ../groupName }}</h2>
+                            {{else}}
                                 <h2 class='atom__title'>{{ title }}</h2>
                             {{/if}}
                             {{#switch type}}
