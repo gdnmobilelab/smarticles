@@ -16,8 +16,6 @@ module.exports = {
         $(el).addClass('group--collapsed');
         $(el).removeClass('group--expanded');
 
-        console.log($(el).children('.atom--visible'));
-        console.log($(el).find('.atom--visible'));
         $(el).children('.atom--visible').each(function(i, el) {
             if (i !== 0) {
                 $(el).css({

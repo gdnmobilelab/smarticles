@@ -89,7 +89,7 @@ module.exports = {
         $('.group--hidden').removeClass('group--hidden');
         $('.atoms--visible .group').each(function(index, el) {
             var hiddenAtoms = $(el).find('.atom--visible').length;
-            console.log(hiddenAtoms);
+
             if (hiddenAtoms === 0) {
                 $(el).addClass('group--hidden');
             }

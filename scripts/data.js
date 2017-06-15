@@ -70,10 +70,8 @@ module.exports = function() {
     // Dev Data
     data = data.sheets;
     sortDevData();
-    
-    fs.writeFileSync('.build/data.json', JSON.stringify(data.days['08/05/2017']));
 
-    // console.log(data.days['08/05/2017']);
+    fs.writeFileSync('.build/data.json', JSON.stringify(data.days['08/05/2017']));
 
     return data;
 };
