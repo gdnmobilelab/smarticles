@@ -1,20 +1,15 @@
 .atom-quote__block {
     margin: 0;
-    quotes: "“" "”" "‘" "’";
-
-    &:before {
-        content: open-quote;
-        font-family: 'Guardian Sans Web';
-    }
-
-    &:after {
-        content: close-quote;
-        font-family: 'Guardian Sans Web';
-    }
 }
 
 .atom-quote__cite {
     display: block;
     color: $c-light-blue;
     font-style: normal;
+}
+
+.atom-quote__quote-mark {
+    width: 40px;
+    display: block;
+    margin: 3px 0;
 }
