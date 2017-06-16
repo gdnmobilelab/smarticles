@@ -13,6 +13,15 @@ function createTimeStamps(atoms) {
     return atoms;
 }
 
+function cleanType(atoms) {
+    for (var i in atoms) {
+        atoms[i].title = atoms[i].title.replace(/“/g, '&ldquo;').replace(/”/g, '&rdquo;').replace(/“/g, '&ldquo;').replace(/”/g, '&rdquo;');
+        atoms[i].copy = atoms[i].copy.replace(/“/g, '&ldquo;').replace(/”/g, '&rdquo;').replace(/’/g, '&#8217;').replace(/—/g, '&mdash;');
+    }
+
+    return atoms;
+}
+
 function orderByGroup(atoms) {
     // put all atoms into objects
     var groupedAtoms = {};
@@ -49,6 +58,7 @@ function sortDevData() {
     for (var i in data) {
         if (i !== 'Master' && i !== 'Stubs') {
             var atoms = createTimeStamps(data[i]);
+                atoms = cleanType(data[i]);
                 atoms = orderByGroup(data[i]);
 
             days[i] = {
