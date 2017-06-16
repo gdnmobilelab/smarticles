@@ -25,7 +25,8 @@
     display: none;
 }
 
-.atom + .atom {
+.atom + .atom--text,
+.atom + .atom--quote {
     padding-top: 6px;
 
     &:before {
