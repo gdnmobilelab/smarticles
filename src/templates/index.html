@@ -5,14 +5,15 @@
 <body>
     {{> includes/devbar }}
 
-    {{> includes/header }}
-
+<!--
     <div class='loader'>
         <img class='loader__image' src='assets/images/loading.gif' />
     </div>
+-->
 
     {{#each days}}
         <ul class='atoms' data-date='{{ @key }}'>
+            {{> includes/header }}
             {{#each groups}}
                 <div class='group group--{{ groupType }}'>
                     {{#each atoms}}

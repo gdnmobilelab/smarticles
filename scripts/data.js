@@ -50,13 +50,34 @@ function sortDevData() {
         if (i !== 'Master' && i !== 'Stubs') {
             var atoms = createTimeStamps(data[i]);
                 atoms = orderByGroup(data[i]);
+
             days[i] = {
-                groups: atoms
+                groups: atoms,
+                title: getTitle(i),
+                stub: getStub(i)
             }
         }
     }
 
     data = {days: days};
+}
+
+// this is a dev function
+function getStub(groupDate) {
+    for (var i in data.Stubs) {
+        if (data.Stubs[i].date === groupDate) {
+            return data.Stubs[i].stub;
+        }
+    }
+}
+
+// this is a dev function
+function getTitle(groupDate) {
+    for (var i in data.Stubs) {
+        if (data.Stubs[i].date === groupDate) {
+            return data.Stubs[i].title;
+        }
+    }
 }
 
 module.exports = function() {
