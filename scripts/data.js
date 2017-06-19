@@ -52,26 +52,6 @@ function orderByGroup(atoms) {
     return groupedAtoms;
 }
 
-function sortDevData() {
-    var days = {};
-
-    for (var i in data) {
-        if (i !== 'Master' && i !== 'Stubs') {
-            var atoms = createTimeStamps(data[i]);
-                atoms = cleanType(data[i]);
-                atoms = orderByGroup(data[i]);
-
-            days[i] = {
-                groups: atoms,
-                title: getTitle(i),
-                stub: getStub(i)
-            }
-        }
-    }
-
-    data = {days: days};
-}
-
 function getFurniture(furniture) {
     var organisedFurniture = {}
 
@@ -87,6 +67,7 @@ function getFurniture(furniture) {
 
 
 module.exports = function() {
+    // fetch data
     data = request('GET', config.dataUrl);
     data = JSON.parse(data.getBody('utf8'));
 
@@ -96,19 +77,10 @@ module.exports = function() {
         furniture: getFurniture(data.sheets.Furniture)
     }
 
+    // manipulate and clean data
     data.groups = createTimeStamps(data.groups);
     data.groups = cleanType(data.groups);
     data.groups = orderByGroup(data.groups);
-
-    console.log(data);
-
-/*
-    createTimeStamps();
-    cleanType();
-    orderByGroup();
-*/
-
-//    console.log(data);
 
     return data;
 };
