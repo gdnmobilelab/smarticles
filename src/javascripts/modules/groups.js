@@ -12,6 +12,12 @@ module.exports = {
         }.bind(this));
     },
 
+    bindings: function() {
+        $('.group__expand-button').click(function(e) {
+            this.expandGroup(e.currentTarget);
+        }.bind(this));
+    },
+
     collapseGroup: function(el) {
         $(el).addClass('group--collapsed');
         $(el).removeClass('group--expanded');
@@ -31,12 +37,6 @@ module.exports = {
                 $(el).attr('data-shrink', '');
             }
         });
-    },
-
-    bindings: function() {
-        $('.group__expand-button').click(function(e) {
-            this.expandGroup(e.currentTarget);
-        }.bind(this));
     },
 
     expandGroup: function(el) {
