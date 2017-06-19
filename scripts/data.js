@@ -37,16 +37,19 @@ function orderByGroup(atoms) {
                 groupedAtoms[groupName] = {
                     groupName: groupName,
                     groupType: atoms[i].groupType,
-                    isFaq: atoms[i].isFaq,
+                    isFaq: (atoms[i].isFaq == 'TRUE' ? true : false),
                     atoms: {
                         0: atoms[i]
                     }
                 };
             }
         } else {
-            groupedAtoms['group' + nonGroupedKey] = {atoms: {
-                0: atoms[i]
-            }};
+            groupedAtoms['group' + nonGroupedKey] = {
+                isFaq: (atoms[i].isFaq == 'TRUE' ? true : false),
+                atoms: {
+                    0: atoms[i]
+                }
+            };
             nonGroupedKey++;
         }
     }
@@ -80,6 +83,8 @@ module.exports = function() {
     data.groups = createTimeStamps(data.groups);
     data.groups = cleanType(data.groups);
     data.groups = orderByGroup(data.groups);
+
+    console.log(data);
 
     return data;
 };

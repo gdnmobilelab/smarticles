@@ -7,42 +7,18 @@
 
     <ul class='atoms'>
         {{#each groups}}
-            <div class='group{{#if groupType }} group--{{ groupType }}{{/if}}'>
-                {{#each atoms}}
-                    <li class='atom atom--{{ type }}' data-timestamp='{{ timeStamp }}'>
-                        {{#if ../groupName}}
-                            <h2 class='atom__title'>{{ ../groupName }}</h2>
-                        {{else}}
-                            <h2 class='atom__title'>{{ title }}</h2>
-                        {{/if}}
-                        {{#switch type}}
-                            {{#case "text"}}
-                                {{> atoms/text }}
-                            {{/case}}
-                            {{#case "quote"}}
-                                {{> atoms/quote }}
-                            {{/case}}
-                            {{#case "image"}}
-                                {{> atoms/image }}
-                            {{/case}}
-                            {{#case "tweet"}}
-                                {{> atoms/tweet }}
-                            {{/case}}
-                            {{#case "video"}}
-                                {{> atoms/video }}
-                            {{/case}}
-                            {{#case "graphic"}}
-                                {{> atoms/graphic }}
-                            {{/case}}
-                        {{/switch}}
-                        <span class='atom__timestamp'>{{ time }} {{ date }}</span>
-                    </li>
-                {{/each}}
+            {{#unless isFaq}}
+                {{> includes/group }}
+            {{/unless}}
+        {{/each}}
+    </ul>
 
-                {{#if groupName}}
-                    <div class='group__expand-button'></div>
-                {{/if}}
-            </div>
+    <ul class='atoms atoms--faqs'>
+        <h1 class='atoms__title'>What else is happening with this?</h1>
+        {{#each groups}}
+            {{#if isFaq}}
+                {{> includes/group }}
+            {{/if}}
         {{/each}}
     </ul>
 

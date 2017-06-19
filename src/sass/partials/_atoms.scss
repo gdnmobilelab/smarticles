@@ -7,6 +7,23 @@
     position: relative
 }
 
+.atoms--faqs {
+    background-color: mix($c-white, $c-light-blue, 95%);
+    border-top: 2px solid $c-blue;
+    padding-bottom: 48px;
+    margin-top: 24px;
+}
+
+.atoms__title {
+    max-width: 400px;
+    margin: 0px auto;
+    padding: 0 10px;
+    font-size: 24px;
+    line-height: 28px;
+    padding: 6px 0 24px;
+    color: $c-blue;
+}
+
 .atom {
     position: relative;
     margin-bottom: 24px;
