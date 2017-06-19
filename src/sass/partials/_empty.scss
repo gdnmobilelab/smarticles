@@ -1,0 +1,26 @@
+.empty {
+    display: none;
+    max-width: 400px;
+    padding: 0 10px;
+    margin: 0 auto;
+}
+
+.has-no-atoms {
+    .empty {
+        display: block;
+    }
+}
+
+.empty__message {
+    margin-top: 48px;
+    font-family: 'Guardian Sans Web';
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    color: $c-black;
+
+    span {
+        display: block;
+        color: $c-grey;
+    }
+}

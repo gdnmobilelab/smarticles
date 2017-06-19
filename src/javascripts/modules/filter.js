@@ -4,8 +4,8 @@ var lastVisitedDate;
 
 module.exports = {
     init: function() {
-        // lastVisitedDate = this.getLastVisitedDate();
-        lastVisitedDate = new Date('Jun 12 2017 17:00:00 GMT-0400 (EDT)');
+        //lastVisitedDate = this.getLastVisitedDate();
+        lastVisitedDate = new Date('Jun 13 2017 17:00:00 GMT-0400 (EDT)');
 
         if (lastVisitedDate === null) {
             this.showAllAtoms();
@@ -28,24 +28,32 @@ module.exports = {
     },
 
     filterAtoms: function() {
+        var hasVisibleGroups = false;
+
         $('.group').each(function(i, el) {
-            var visibleInGroup = 0;
+            var hasVisibleAtoms = false;
 
             $(el).find('.atom').each(function(i, el) {
                 var atomDate = new Date($(el).attr('data-timestamp'));
 
                 if (lastVisitedDate < atomDate) {
                     $(el).addClass('atom--visible');
-                    visibleInGroup++;
+                    hasVisibleAtoms = true;
                 }
             });
 
-            if (visibleInGroup === 0) {
+            if (!hasVisibleAtoms) {
                 $(el).css({
                     'display': 'none'
                 });
+            } else {
+                hasVisibleGroups = true;
             }
         });
+
+        if (!hasVisibleGroups) {
+            $('body').addClass('has-no-atoms');
+        }
 
         this.setLastVisitedDate();
     }
