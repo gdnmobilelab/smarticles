@@ -2,14 +2,9 @@
     margin: 0 auto;
     list-style: none;
     font-family: 'Guardian Sans Web';
-    display: none;
     z-index: 5;
     padding-left: 0;
     position: relative
-}
-
-.atoms--visible {
-    display: block;
 }
 
 .atom {
@@ -22,7 +17,6 @@
     line-height: 22px;
     color: $c-black;
     background-color: $c-light-grey;
-    display: none;
 }
 
 .atom + .atom--text,
@@ -41,9 +35,6 @@
     }
 }
 
-.atom--visible {
-    display: block;
-}
 
 .atom__title {
     font-size: 16px;
@@ -52,7 +43,7 @@
     margin: 0;
 }
 
-.atom--visible + .atom--visible .atom__title {
+.atom + .atom .atom__title {
     display: none;
 }
 
