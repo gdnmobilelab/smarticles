@@ -8,17 +8,13 @@ module.exports = {
     convertTimeStamps: function() {
         $('.atom').each(function(i, el) {
             var date = $(el).attr('data-timeStamp');
-            var now = $(el).parent().parent().attr('data-date');
-            $(el).find('.atom__timestamp').text(this.timeToRelative(date, now));
+            $(el).find('.atom__timestamp').text(this.timeToRelative(date));
         }.bind(this));
     },
 
-    timeToRelative: function(timeStamp, today) {
-        today = today.split('/');
-
-        var now = new Date(today[1] + '/' + today[0] + '/' + today[2] + ' 20:59'),
-            then = new Date(timeStamp),
-            delta = parseInt((now - then) / 1000, 10);
+    timeToRelative: function(timeStamp) {
+        var then = new Date(timeStamp),
+            delta = parseInt((new Date() - then) / 1000, 10);
 
         if (delta < 0) {
             return 'In the future?!?!'
@@ -29,11 +25,11 @@ module.exports = {
             minutes = Math.round(delta / 60, 10);
             return minutes + ' minute' + (minutes > 1 ? 's': '') + ' ago';
 
-        } else if (this.isToday(then, now)) {
+        } else if (this.isToday(then)) {
             hours = Math.round(delta / 3600);
             return hours + ' hour' + (hours > 1 ? 's': '') + ' ago';
 
-        } else if (this.isYesterday(then, now)) {
+        } else if (this.isYesterday(then)) {
             return 'Yesterday'
 
         } else if (delta < 7 * 24 * 60 * 60) { // less than five days
@@ -44,14 +40,14 @@ module.exports = {
         }
     },
 
-    isToday: function(date, now) {
+    isToday: function(date) {
+        var now = new Date();
         return date.toDateString() === now.toDateString() ? true : false;
     },
 
-    isYesterday: function(date, now) {
-
-        var yesterday = new Date(now);
-            yesterday.setDate(now.getDate() - 1);
+    isYesterday: function(date) {
+        var yesterday = new Date();
+            yesterday.setDate(yesterday.getDate() - 1);
 
         return date.toDateString() === yesterday.toDateString() ? true : false;
     },
