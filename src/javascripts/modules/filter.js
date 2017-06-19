@@ -4,8 +4,14 @@ var lastVisitedDate;
 
 module.exports = {
     init: function() {
-        lastVisitedDate = this.getLastVisitedDate();
-        this.filterAtoms();
+        // lastVisitedDate = this.getLastVisitedDate();
+        lastVisitedDate = new Date('Jun 12 2017 17:00:00 GMT-0400 (EDT)');
+
+        if (lastVisitedDate === null) {
+            this.showAllAtoms();
+        } else {
+            this.filterAtoms();
+        }
     },
 
     getLastVisitedDate: function() {
@@ -13,11 +19,34 @@ module.exports = {
     },
 
     setLastVisitedDate: function() {
-        var currentDate = Date.now();
-        localStorage.setItem('lastVisitedDate', currentDate);
+        localStorage.setItem('lastVisitedDate', Date.now());
+    },
+
+    showAllAtoms: function() {
+        $('.atom').addClass('atom--visible');
+        this.setLastVisitedDate();
     },
 
     filterAtoms: function() {
-        
+        $('.group').each(function(i, el) {
+            var visibleInGroup = 0;
+
+            $(el).find('.atom').each(function(i, el) {
+                var atomDate = new Date($(el).attr('data-timestamp'));
+
+                if (lastVisitedDate < atomDate) {
+                    $(el).addClass('atom--visible');
+                    visibleInGroup++;
+                }
+            });
+
+            if (visibleInGroup === 0) {
+                $(el).css({
+                    'display': 'none'
+                });
+            }
+        });
+
+        this.setLastVisitedDate();
     }
 }

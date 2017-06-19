@@ -3,9 +3,9 @@
     {{> structure/head }}
 
 <body>
-    <ul class='atoms' data-date='{{ @key }}'>
-        {{> includes/header }}
+    {{> includes/header }}
 
+    <ul class='atoms'>
         {{#each groups}}
             <div class='group{{#if groupType }} group--{{ groupType }}{{/if}}'>
                 {{#each atoms}}

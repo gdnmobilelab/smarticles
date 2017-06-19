@@ -6,15 +6,15 @@ module.exports = {
         this.bindings();
     },
 
-    collapseGroups: function() {
-        $('.atoms--visible .group--collapsed').each(function(i, el) {
-            this.collapseGroup(el);
-        }.bind(this));
-    },
-
     bindings: function() {
         $('.group__expand-button').click(function(e) {
             this.expandGroup(e.currentTarget);
+        }.bind(this));
+    },
+
+    collapseGroups: function() {
+        $('.group--collapsed').each(function(i, el) {
+            this.collapseGroup(el);
         }.bind(this));
     },
 
@@ -22,7 +22,7 @@ module.exports = {
         $(el).addClass('group--collapsed');
         $(el).removeClass('group--expanded');
 
-        $(el).children('.atom--visible').each(function(i, el) {
+        $(el).children('.atom').each(function(i, el) {
             if (i !== 0) {
                 $(el).css({
                     'margin-top': '-' + ($(el).height() + 4) + 'px',

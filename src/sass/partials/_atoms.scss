@@ -15,8 +15,13 @@
     padding: 4px 6px 6px;
     font-size: 16px;
     line-height: 22px;
+    display: none;
     color: $c-black;
     background-color: $c-light-grey;
+}
+
+.atom--visible {
+    display: block;
 }
 
 .atom + .atom--text,
@@ -35,7 +40,6 @@
     }
 }
 
-
 .atom__title {
     font-size: 16px;
     font-weight: bold;
@@ -43,7 +47,7 @@
     margin: 0;
 }
 
-.atom + .atom .atom__title {
+.atom--visible + .atom--visible .atom__title {
     display: none;
 }
 
