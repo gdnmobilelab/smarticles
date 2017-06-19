@@ -12,6 +12,10 @@
     border-top: 2px solid $c-blue;
     padding-bottom: 48px;
     margin-top: 24px;
+
+    .has-no-atoms & {
+        display: none;
+    }
 }
 
 .atoms__title {
