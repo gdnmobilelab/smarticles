@@ -34,12 +34,14 @@ function orderByGroup(atoms) {
             if (groupedAtoms[groupName]) {
                 groupedAtoms[groupName].atoms[Object.keys(groupedAtoms[groupName].atoms).length + 1] = atoms[i];
             } else {
-                groupedAtoms[groupName] = {};
-                groupedAtoms[groupName].groupName = groupName;
-                groupedAtoms[groupName].groupType = atoms[i].groupType;
-
-                groupedAtoms[groupName].atoms = {};
-                groupedAtoms[groupName].atoms[0] = atoms[i];
+                groupedAtoms[groupName] = {
+                    groupName: groupName,
+                    groupType: atoms[i].groupType,
+                    isFaq: atoms[i].isFaq,
+                    atoms: {
+                        0: atoms[i]
+                    }
+                };
             }
         } else {
             groupedAtoms['group' + nonGroupedKey] = {atoms: {
