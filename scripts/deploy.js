@@ -75,8 +75,8 @@ function uploadNextItem () {
 
         if ( !inFlight ) {
             loader.stop();
-            console.log( '\nupload complete! type ' + chalk.cyan( 'npm run open' ) + ' to view the project' );
-            console.log( '\nView at ' + BUCKET + '/smarticles/' + version + '/index.html \n ' );
+            console.log( '\nupload complete!' );
+            console.log( '\nView at ' + chalk.green( BUCKET + '/smarticles/' + version + '/index.html' ) + '\n ' );
         }
 
         return;
