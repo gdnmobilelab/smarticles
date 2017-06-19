@@ -72,37 +72,43 @@ function sortDevData() {
     data = {days: days};
 }
 
-// this is a dev function
-function getStub(groupDate) {
-    for (var i in data.Stubs) {
-        if (data.Stubs[i].date === groupDate) {
-            return data.Stubs[i].stub;
-        }
+function getFurniture(furniture) {
+    var organisedFurniture = {}
+
+    console.log(furniture);
+
+    for (var i in furniture) {
+        console.log(i);
+        organisedFurniture[furniture[i].option] = furniture[i].value;
     }
+
+    return organisedFurniture;
 }
 
-// this is a dev function
-function getTitle(groupDate) {
-    for (var i in data.Stubs) {
-        if (data.Stubs[i].date === groupDate) {
-            return data.Stubs[i].title;
-        }
-    }
-}
 
 module.exports = function() {
     data = request('GET', config.dataUrl);
     data = JSON.parse(data.getBody('utf8'));
-    // Production data
-    // data = data.sheets.Master;
-    // createTimeStamps(data);
-    // orderByGroup(data);
 
-    // Dev Data
-    data = data.sheets;
-    sortDevData();
+    // data structure
+    data = {
+        groups: data.sheets.Atoms,
+        furniture: getFurniture(data.sheets.Furniture)
+    }
 
-    fs.writeFileSync('.build/data.json', JSON.stringify(data.days['08/05/2017']));
+    data.groups = createTimeStamps(data.groups);
+    data.groups = cleanType(data.groups);
+    data.groups = orderByGroup(data.groups);
+
+    console.log(data);
+
+/*
+    createTimeStamps();
+    cleanType();
+    orderByGroup();
+*/
+
+//    console.log(data);
 
     return data;
 };

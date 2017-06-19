@@ -5,55 +5,47 @@
 <body>
     {{> includes/devbar }}
 
-<!--
-    <div class='loader'>
-        <img class='loader__image' src='assets/images/loading.gif' />
-    </div>
--->
+    <ul class='atoms' data-date='{{ @key }}'>
+        {{> includes/header }}
+        {{#each groups}}
+            <div class='group group--{{ groupType }}'>
+                {{#each atoms}}
+                    <li class='atom atom--{{ type }}' data-timestamp='{{ timeStamp }}'>
+                        {{#if ../groupName}}
+                            <h2 class='atom__title'>{{ ../groupName }}</h2>
+                        {{else}}
+                            <h2 class='atom__title'>{{ title }}</h2>
+                        {{/if}}
+                        {{#switch type}}
+                            {{#case "text"}}
+                                {{> atoms/text }}
+                            {{/case}}
+                            {{#case "quote"}}
+                                {{> atoms/quote }}
+                            {{/case}}
+                            {{#case "image"}}
+                                {{> atoms/image }}
+                            {{/case}}
+                            {{#case "tweet"}}
+                                {{> atoms/tweet }}
+                            {{/case}}
+                            {{#case "video"}}
+                                {{> atoms/video }}
+                            {{/case}}
+                            {{#case "graphic"}}
+                                {{> atoms/graphic }}
+                            {{/case}}
+                        {{/switch}}
+                        <span class='atom__timestamp'>{{ time }} {{ date }}</span>
+                    </li>
+                {{/each}}
 
-    {{#each days}}
-        <ul class='atoms' data-date='{{ @key }}'>
-            {{> includes/header }}
-            {{#each groups}}
-                <div class='group group--{{ groupType }}'>
-                    {{#each atoms}}
-                        <li class='atom atom--{{ type }}' data-timestamp='{{ timeStamp }}'>
-                            {{#if ../groupName}}
-                                <h2 class='atom__title'>{{ ../groupName }}</h2>
-                            {{else}}
-                                <h2 class='atom__title'>{{ title }}</h2>
-                            {{/if}}
-                            {{#switch type}}
-                                {{#case "text"}}
-                                    {{> atoms/text }}
-                                {{/case}}
-                                {{#case "quote"}}
-                                    {{> atoms/quote }}
-                                {{/case}}
-                                {{#case "image"}}
-                                    {{> atoms/image }}
-                                {{/case}}
-                                {{#case "tweet"}}
-                                    {{> atoms/tweet }}
-                                {{/case}}
-                                {{#case "video"}}
-                                    {{> atoms/video }}
-                                {{/case}}
-                                {{#case "graphic"}}
-                                    {{> atoms/graphic }}
-                                {{/case}}
-                            {{/switch}}
-                            <span class='atom__timestamp'>{{ time }} {{ date }}</span>
-                        </li>
-                    {{/each}}
-
-                    {{#if groupName}}
-                        <div class='group__expand-button'></div>
-                    {{/if}}
-                </div>
-            {{/each}}
-        </ul>
-    {{/each}}
+                {{#if groupName}}
+                    <div class='group__expand-button'></div>
+                {{/if}}
+            </div>
+        {{/each}}
+    </ul>
 
     <script type="text/javascript" src="./main.js"></script>
 </body>
