@@ -55,10 +55,7 @@ function orderByGroup(atoms) {
 function getFurniture(furniture) {
     var organisedFurniture = {}
 
-    console.log(furniture);
-
     for (var i in furniture) {
-        console.log(i);
         organisedFurniture[furniture[i].option] = furniture[i].value;
     }
 
