@@ -6,10 +6,23 @@
     display: block;
     color: $c-light-blue;
     font-style: normal;
+    margin-bottom: 90px;
 }
 
 .atom-quote__quote-mark {
     width: 40px;
     display: block;
     margin: 3px 0;
+}
+
+.atom-quote__cutout {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 45%;
+    opacity: 1;
+
+    .group--collapsed .atom--visible + .atom--visible & {
+        opacity: 0;
+    }
 }

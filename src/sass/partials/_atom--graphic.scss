@@ -1,3 +1,6 @@
 .atom-graphic__iframe {
-    width: 100%;
+    padding-right: 16px;
+    margin: 6px 0 0;
+    margin-left: -8px;
+    width: calc(100% + 16px);
 }
