@@ -60,5 +60,10 @@ module.exports = {
     getMonth: function(then) {
         var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         return months[then.getMonth()];
+    },
+
+    getWeeks: function(delta) {
+        var weeks = Math.floor(delta / (60 * 60 * 24 * 7));
+        return weeks + ' week' + (weeks > 1 ? 's' : '');
     }
 }
