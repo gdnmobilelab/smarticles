@@ -84,7 +84,5 @@ module.exports = function() {
     data.groups = cleanType(data.groups);
     data.groups = orderByGroup(data.groups);
 
-    console.log(data);
-
     return data;
 };
