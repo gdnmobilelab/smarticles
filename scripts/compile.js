@@ -59,4 +59,7 @@ deasync.loopWhile(function() {
     return !isDone;
 });
 
+// Data
+fs.writeFileSync('.build/characters.json', JSON.stringify(data.characters));
+
 fs.copySync('src/assets/', '.build/assets/');

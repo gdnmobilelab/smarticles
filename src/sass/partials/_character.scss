@@ -1,0 +1,11 @@
+.character--long {
+    .character__short {
+        display: none;
+    }
+}
+
+.character--short {
+    .character__long {
+        display: none;
+    }
+}

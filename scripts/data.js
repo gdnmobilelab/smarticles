@@ -76,7 +76,8 @@ module.exports = function() {
     // data structure
     data = {
         groups: data.sheets.Atoms,
-        furniture: getFurniture(data.sheets.Furniture)
+        furniture: getFurniture(data.sheets.Furniture),
+        characters: data.sheets.Characters
     }
 
     // manipulate and clean data

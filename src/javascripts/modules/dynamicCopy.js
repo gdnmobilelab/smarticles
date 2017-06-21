@@ -4,6 +4,7 @@ var timeStamps = require('../modules/timeStamps');
 module.exports = {
     init: function() {
         this.dynamicDates();
+        this.dynamicCharacters();
     },
 
     dynamicDates: function() {
@@ -39,5 +40,48 @@ module.exports = {
 
     calculateText: function(el) {
         return $(el).attr('data-date');
+    },
+
+    dynamicCharacters: function() {
+        var characters = this.fetchCharacters();
+
+        for (var i in characters) {
+            this.replaceCharacters(characters[i], i);
+        }
+    },
+
+    fetchCharacters: function() {
+        var json = (function () {
+            var json = null;
+            $.ajax({
+                'async': false,
+                'global': false,
+                'url': 'characters.json',
+                'dataType': 'json',
+                'success': function (data) {
+                    json = data;
+                }
+            });
+            return json;
+        })();
+
+        return json;
+    },
+
+    replaceCharacters: function(character, i) {
+        var html = '<span class=\'character character--' + i + '\'><span class=\'character__short\'>' + character.shortName + '</span><span class=\'character__long\'>' + character.longName + '</span></span>';
+        var regex = new RegExp('character.' + character.id , 'g')
+
+        $('.atom__copy').each(function(i, el) {
+            $(el).html($(el).text().replace(/character.munoz/g, html));
+        });
+
+        $('.character--' + i).each(function(i, el) {
+            if (i === 0) {
+                $(el).addClass('character--long');
+            } else {
+                $(el).addClass('character--short');
+            }
+        });
     }
 }
