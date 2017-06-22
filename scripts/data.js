@@ -67,6 +67,17 @@ function getFurniture(furniture) {
     return organisedFurniture;
 }
 
+function getLastUpdated(atoms) {
+    var lastUpdated = atoms[0].timeStamp;
+
+    for (var i in atoms) {
+        if (atoms[i].timeStamp > lastUpdated) {
+            lastUpdated = atoms[i].timeStamp;
+        }
+    }
+
+    return lastUpdated;
+}
 
 module.exports = function() {
     // fetch data
@@ -77,11 +88,13 @@ module.exports = function() {
     data = {
         groups: data.sheets.Atoms,
         furniture: getFurniture(data.sheets.Furniture),
-        characters: data.sheets.Characters
+        characters: data.sheets.Characters,
+        lastUpdated: new Date()
     }
 
     // manipulate and clean data
     data.groups = createTimeStamps(data.groups);
+    data.lastUpdated = getLastUpdated(data.groups);
     data.groups = cleanType(data.groups);
     data.groups = orderByGroup(data.groups);
 
