@@ -1,5 +1,5 @@
 var $ = require('../vendor/jquery.js');
-var timeStamps = require('../modules/timeStamps');
+var timeTools = require('../helpers/timeTools');
 
 module.exports = {
     init: function() {
@@ -19,20 +19,20 @@ module.exports = {
 
         var delta = parseInt((new Date() - date) / 1000, 10);
 
-        if (timeStamps.isToday(date)) {
+        if (timeTools.isToday(date)) {
             return 'Today'
 
-        } else if (timeStamps.isYesterday(date)) {
+        } else if (timeTools.isYesterday(date)) {
             return 'Yesterday'
 
         } else if (delta < 7 * 24 * 60 * 60) { // less than five days
-            return 'On ' + timeStamps.getDay(date);
+            return 'On ' + timeTools.getDay(date);
 
         } else if (delta < 21 * 24 * 60 * 60) {
-            return timeStamps.getWeeks(delta) + ' ago';
+            return timeTools.getWeeks(delta) + ' ago';
 
         } else {
-            return 'On ' + date.getDate() + ' ' + timeStamps.getMonth(date);
+            return 'On ' + date.getDate() + ' ' + timeTools.getMonth(date);
         }
 
         return date;

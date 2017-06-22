@@ -45,10 +45,6 @@
         .atom--visible[data-shrink='#{$i}'] {
             background-color: darken($c-light-grey, $i * 2%);
             transform: scale(-($i) * 0.02 + 1, 1);
-
-            .atom__timestamp {
-                opacity: 0;
-            }
         }
     }
 }

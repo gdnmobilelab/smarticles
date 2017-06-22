@@ -71,13 +71,3 @@
 .atom--visible + .atom--visible .atom__title {
     display: none;
 }
-
-.atom__timestamp {
-    opacity: 1;
-    transition: opacity 0.5s ease-out;
-    margin-top: 12px;
-    display: block;
-    color: $c-grey;
-    font-size: 14px;
-    line-height: 1;
-}
