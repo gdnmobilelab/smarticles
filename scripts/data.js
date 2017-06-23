@@ -4,10 +4,45 @@ var config = require('./config.js').config;
 
 var data;
 
+function getFurniture(furniture) {
+    var organisedFurniture = {}
+
+    for (var i in furniture) {
+        organisedFurniture[furniture[i].option] = furniture[i].value;
+    }
+
+    return organisedFurniture;
+}
+
 function createTimeStamps(atoms) {
     for (var i in atoms) {
         var date = atoms[i].date.split('/');
         atoms[i].timeStamp = new Date(date[1] + '/' + date[0] + '/' + date[2] + ' ' + atoms[i].time);
+    }
+
+    return atoms;
+}
+
+function getLastUpdated(atoms) {
+    var lastUpdated = atoms[0].timeStamp;
+
+    for (var i in atoms) {
+        if (atoms[i].timeStamp > lastUpdated) {
+            lastUpdated = atoms[i].timeStamp;
+        }
+    }
+
+    return lastUpdated;
+}
+
+function addDynamicCharacters(atoms, characters) {
+    for (var i in characters) {
+        var html = '<span class=\'character character--' + i + '\'><span class=\'character__short\'>' + characters[i].shortName + '</span><span class=\'character__long\'>' + characters[i].longName + '</span></span>';
+        var regex = new RegExp('character.' + characters[i].id , 'g');
+
+        for (var atom in atoms) {
+            atoms[atom].copy = atoms[atom].copy.replace(regex, html);
+        }
     }
 
     return atoms;
@@ -57,28 +92,6 @@ function orderByGroup(atoms) {
     return groupedAtoms;
 }
 
-function getFurniture(furniture) {
-    var organisedFurniture = {}
-
-    for (var i in furniture) {
-        organisedFurniture[furniture[i].option] = furniture[i].value;
-    }
-
-    return organisedFurniture;
-}
-
-function getLastUpdated(atoms) {
-    var lastUpdated = atoms[0].timeStamp;
-
-    for (var i in atoms) {
-        if (atoms[i].timeStamp > lastUpdated) {
-            lastUpdated = atoms[i].timeStamp;
-        }
-    }
-
-    return lastUpdated;
-}
-
 module.exports = function() {
     // fetch data
     data = request('GET', config.dataUrl);
@@ -95,8 +108,11 @@ module.exports = function() {
     // manipulate and clean data
     data.groups = createTimeStamps(data.groups);
     data.lastUpdated = getLastUpdated(data.groups);
+    data.groups = addDynamicCharacters(data.groups, data.characters);
     data.groups = cleanType(data.groups);
     data.groups = orderByGroup(data.groups);
+
+    console.log(data.groups['Munoz Letter to Staff']);
 
     return data;
 };

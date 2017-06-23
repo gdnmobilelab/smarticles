@@ -4,12 +4,12 @@ var timeTools = require('../helpers/timeTools');
 module.exports = {
     init: function() {
         this.dynamicDates();
-        // this.dynamicCharacters();
+        this.dynamicCharacters();
     },
 
     dynamicDates: function() {
         $('.atom__copy').each(function(i, el) {
-            $(el).html($(el).text().replace(/time.[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{2,4}/g, this.returnDynamicTime));
+            $(el).html($(el).html().replace(/time.[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{2,4}/g, this.returnDynamicTime));
         }.bind(this));
     },
 
@@ -42,46 +42,16 @@ module.exports = {
         return $(el).attr('data-date');
     },
 
-    dynamicCharacters: function() {
-        var characters = this.fetchCharacters();
-
-        for (var i in characters) {
-            this.replaceCharacters(characters[i], i);
-        }
-    },
-
-    fetchCharacters: function() {
-        var json = (function () {
-            var json = null;
-            $.ajax({
-                'async': false,
-                'global': false,
-                'url': 'characters.json',
-                'dataType': 'json',
-                'success': function (data) {
-                    json = data;
+    dynamicCharacters: function(character, i) {
+        // TODO: Write this a little smarter than just looping 10 times...
+        for (var i = 0; 10 > i; i++) {
+            $('.character--' + i).each(function(i, el) {
+                if (i === 0) {
+                    $(el).addClass('character--long');
+                } else {
+                    $(el).addClass('character--short');
                 }
             });
-            return json;
-        })();
-
-        return json;
-    },
-
-    replaceCharacters: function(character, i) {
-        var html = '<span class=\'character character--' + i + '\'><span class=\'character__short\'>' + character.shortName + '</span><span class=\'character__long\'>' + character.longName + '</span></span>';
-        var regex = new RegExp('character.' + character.id , 'g')
-
-        $('.atom__copy').each(function(i, el) {
-            $(el).html($(el).text().replace(/character.munoz/g, html));
-        });
-
-        $('.character--' + i).each(function(i, el) {
-            if (i === 0) {
-                $(el).addClass('character--long');
-            } else {
-                $(el).addClass('character--short');
-            }
-        });
+        }
     }
 }
