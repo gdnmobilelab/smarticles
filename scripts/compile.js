@@ -17,7 +17,6 @@ var partials = glob.readdirSync('src/templates/**/*.html');
 partials.forEach(function (partial) {
     var name = partial.replace('src/templates/', '').split('.')[0];
     var template = fs.readFileSync(partial, 'utf8');
-    console.log(name);
     handlebars.registerPartial(name, template);
 });
 
