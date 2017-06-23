@@ -4,7 +4,7 @@ var timeTools = require('../helpers/timeTools');
 module.exports = {
     init: function() {
         this.dynamicDates();
-        this.dynamicCharacters();
+        // this.dynamicCharacters();
     },
 
     dynamicDates: function() {

@@ -5,7 +5,7 @@ var lastVisitedDate;
 module.exports = {
     init: function() {
         // lastVisitedDate = this.getLastVisitedDate();
-        lastVisitedDate = new Date('Jun 13 2017 17:00:00 GMT-0400 (EDT)');
+        lastVisitedDate = new Date('Apr 9 2017 17:00:00 GMT-0400 (EDT)');
 
         if (lastVisitedDate === null) {
             this.showAllAtoms();
