@@ -1,4 +1,4 @@
-# smarticles
+# Smarticles
 
 They're articles but they're smart
 
@@ -16,4 +16,6 @@ Pretty much everything you'll need to touch is inside the `src` folder. Here liv
 The `scripts` folder contains the compilation side of things. This is for server-side sorting of data and building of assets. The only file you will probably need to change in here is the data source, which is referenced inside `scripts/config.js`.
 
 ## Deployment
-You can also use `npm run deploy` which currently deploys to the [Staging server for the Guardian Mobile Lab](http://stg.gdnmobilelab.com). Each time you upload it will create a new version based on the date. This will look like... `http://stg.gdnmobilelab.com/smarticles/1497898764603/index.html`, with `1497898764603` being the unix timestamp when you uploaded it (the terminal will return the full url though).
+You can also use `npm run deploy` which currently deploys to the [Staging server for the Guardian Mobile Lab](http://stg.gdnmobilelab.com).
+
+Each time you upload it will create a new version based on the date. This will look like... `http://stg.gdnmobilelab.com/smarticles/1497898764603/index.html`, with `1497898764603` being the unix timestamp when you uploaded it (the terminal will return the full url though).
