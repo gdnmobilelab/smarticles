@@ -16,7 +16,7 @@
 }
 
 .group {
-    overflow: hidden;
+//     overflow: hidden; removed for atom count, not entirely sure why it was added
     border-top: 1px solid $c-blue;
     max-width: 400px;
     margin: 0 auto;
