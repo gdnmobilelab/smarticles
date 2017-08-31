@@ -10,6 +10,6 @@ module.exports = {
     },
 
     get: function(key) {
-        localStorage.getItem($('body').attr('data-id') + '-' + key);
+        return localStorage.getItem($('body').attr('data-id') + '-' + key);
     }
 }
