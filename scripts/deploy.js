@@ -21,12 +21,24 @@ var glob = require( 'glob' );
 var filesize = require( 'filesize' );
 var stevedore = require( 'stevedore' );
 var chalk = require( 'chalk' );
+var request = require('sync-request');
+var config = require('./config.js').config;
 
 var BUCKET = 'www.stg.gdnmobilelab.com';
 
 var BASE_DIR = path.resolve( '.build' );
 var version = Date.now();
 var MAX_CONCURRENT_UPLOADS = 8;
+
+var data = request('GET', config.dataUrl);
+    data = JSON.parse(data.getBody('utf8'));
+
+var slug = data.sheets.Furniture[2].value;
+
+if (!slug) {
+    console.log('No slug provided in Furniture. Deploy aborted');
+    return false;
+}
 
 try {
     var CREDENTIALS = new AWS.SharedIniFileCredentials({profile: 'mobilelab'});
@@ -76,7 +88,7 @@ function uploadNextItem () {
         if ( !inFlight ) {
             loader.stop();
             console.log( '\nupload complete!' );
-            console.log( '\nView at ' + chalk.green( BUCKET + '/smarticles/' + version + '/index.html' ) + '\n ' );
+            console.log( '\nView at ' + chalk.green( BUCKET + '/smarticles/' + slug + '/index.html' ) + '\n ' );
         }
 
         return;
@@ -89,7 +101,7 @@ function uploadNextItem () {
     var options = {
         Bucket: BUCKET,
         ACL: 'public-read',
-        Key: 'smarticles/' + version + '/' + item.file,
+        Key: 'smarticles/' + slug + '/' + item.file,
         Body: data,
         ContentType: mime.lookup( item.file )
     };

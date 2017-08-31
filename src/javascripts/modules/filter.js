@@ -1,30 +1,26 @@
 var $ = require('../vendor/jquery.js');
+var storage = require('../modules/storage.js');
 
 var lastVisitedDate;
 
 module.exports = {
     init: function() {
-        // lastVisitedDate = this.getLastVisitedDate();
-        lastVisitedDate = new Date('Apr 9 2017 17:00:00 GMT-0400 (EDT)');
+        if ($('body').attr('data-filtering') === 'TRUE') {
+            lastVisitedDate = storage.get('lastVisitedDate');
 
-        if (lastVisitedDate === null) {
-            this.showAllAtoms();
+            if (lastVisitedDate === null) {
+                this.showAllAtoms();
+            } else {
+                this.filterAtoms();
+            }
         } else {
-            this.filterAtoms();
+            this.showAllAtoms();
         }
-    },
-
-    getLastVisitedDate: function() {
-        return localStorage.getItem('lastVisitedDate');
-    },
-
-    setLastVisitedDate: function() {
-        localStorage.setItem('lastVisitedDate', Date.now());
     },
 
     showAllAtoms: function() {
         $('.atom').addClass('atom--visible');
-        this.setLastVisitedDate();
+        storage.set('lastVisitedDate', Date.now());
     },
 
     filterAtoms: function() {
@@ -55,6 +51,6 @@ module.exports = {
             $('body').addClass('has-no-atoms');
         }
 
-        this.setLastVisitedDate();
+        storage.set('lastVisitedDate', Date.now());
     }
 }
