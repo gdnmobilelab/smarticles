@@ -51,7 +51,6 @@ function addDynamicCharacters(atoms, characters) {
 function cleanType(atoms) {
     for (var i in atoms) {
         atoms[i].title = atoms[i].title.replace(/“/g, '&ldquo;').replace(/”/g, '&rdquo;').replace(/“/g, '&ldquo;').replace(/”/g, '&rdquo;');
-        console.log(atoms[i].copy);
         atoms[i].copy = atoms[i].copy.replace(/“/g, '&ldquo;').replace(/”/g, '&rdquo;').replace(/’/g, '&rsquo;').replace(/—/g, '&mdash;').replace(/‘/g, '&lsquo;');
     }
 
