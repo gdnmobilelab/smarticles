@@ -62,3 +62,4 @@ deasync.loopWhile(function() {
 fs.writeFileSync('.build/characters.json', JSON.stringify(data.characters));
 
 fs.copySync('src/assets/', '.build/assets/');
+fs.copySync('scripts/manifest.json', '.build/manifest.json');

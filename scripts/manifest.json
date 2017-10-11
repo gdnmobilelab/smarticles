@@ -1,0 +1,7 @@
+{
+  "name": "Smarticles",
+  "short_name": "Smarticles",
+  "start_url": "/smarticles/",
+  "display": "standalone",
+  "gcm_sender_id": "482941778795"
+}

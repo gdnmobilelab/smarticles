@@ -24,3 +24,11 @@
     font-size: 16px;
     line-height: 22px;
 }
+
+.header__notifications {
+    display: none;
+
+    &.is-supported {
+        display: block;
+    }
+}
