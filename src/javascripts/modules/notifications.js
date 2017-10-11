@@ -79,9 +79,5 @@ module.exports = {
             OneSignal.deleteTag(pageId);
             $('.header__notifications').removeClass('is-subscribed').addClass('not-subscribed');
         }
-
-         OneSignal.getTags().then(function(tags) {
-             console.log(tags)
-        });
     }
 }
