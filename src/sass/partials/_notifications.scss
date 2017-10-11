@@ -1,0 +1,87 @@
+.notifications {
+    display: flex;
+    margin-bottom: 12px;
+}
+
+.notification-button {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: $c-white;
+}
+
+.notification-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 50%;
+    margin: auto;
+    display: none;
+}
+
+.notification-label {
+    display: none;
+    align-self: center;
+    margin-left: 6px;
+}
+
+@keyframes loading {
+    0%, 100% {
+        opacity: 0.2;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+// logic
+.is-subscribed {
+    .notification-icon--on {
+        display: block;
+    }
+
+    .notification-label--subscribed {
+        display: block;
+    }
+}
+
+.not-subscribed {
+    .notification-icon--off {
+        display: block;
+    }
+
+    .notification-label--not-subscribed {
+        display: block;
+    }
+}
+
+.not-supported {
+    opacity: 0.5;
+
+    .notification-icon--off {
+        display: block;
+    }
+
+    .notification-label--not-supported {
+        display: block;
+    }
+}
+
+.is-loading {
+    pointer-events: none;
+
+    .notification-button {
+        animation: loading 1s linear infinite;
+    }
+
+    .notification-icon--off {
+        display: block;
+    }
+
+    .notification-label--loading {
+        display: block;
+    }
+}

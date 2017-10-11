@@ -35,6 +35,8 @@ module.exports = {
 
         if (isPushSupported) {
             this.checkIfUserIsSubscribed();
+        } else {
+            $('.notifications').addClass('not-supported');
         }
     },
 
@@ -55,29 +57,30 @@ module.exports = {
     },
 
     initButton: function(state) {
-        $('.header__notifications').addClass('is-supported');
-        $('.header__notifications').addClass(state);
+        $('.notifications').removeClass('is-loading');
+        $('.notifications').addClass('is-supported');
+        $('.notifications').addClass(state);
         this.bindings();
     },
 
     bindings: function() {
-        $('.header__notifications').click(function() {
+        $('.notifications').click(function() {
             this.toggleSubscribe();
         }.bind(this));
     },
 
     toggleSubscribe: function() {
-        if ($('.header__notifications').hasClass('not-subscribed')) {
+        if ($('.notifications').hasClass('not-subscribed')) {
             OneSignal.isPushNotificationsEnabled(function(isEnabled) {
                 if (!isEnabled) {
                     OneSignal.registerForPushNotifications();
                 }
                 OneSignal.sendTag(pageId, 'subscribed');
-                $('.header__notifications').removeClass('not-subscribed').addClass('is-subscribed');
+                $('.notifications').removeClass('not-subscribed').addClass('is-subscribed');
             });
         } else {
             OneSignal.deleteTag(pageId);
-            $('.header__notifications').removeClass('is-subscribed').addClass('not-subscribed');
+            $('.notifications').removeClass('is-subscribed').addClass('not-subscribed');
         }
     }
 }
