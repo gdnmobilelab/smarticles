@@ -41,37 +41,6 @@
     background-color: $c-light-grey;
 }
 
-.atom__weighting {
-    position: absolute;
-    top: 4px;
-    right: 4px;
-    color: $c-white;
-    background-color: $c-black;
-    border-radius: 50%;
-    padding: 8px 15px;
-    z-index: 10;
-}
-
-.atom__weighting--1 {
-    background-color: #e31f26;
-}
-
-.atom__weighting--2 {
-    background-color: #e6711b;
-}
-
-.atom__weighting--3 {
-    background-color: #ffbb00;
-}
-
-.atom__weighting--4 {
-    background-color: #aad801;
-}
-
-.atom__weighting--5 {
-    background-color: #69d1ca;
-}
-
 .atom--visible {
     display: block;
 }

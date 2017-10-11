@@ -92,6 +92,16 @@ function orderByGroup(atoms) {
     return groupedAtoms;
 }
 
+function showWeighting(atoms) {
+    if (data.furniture.showWeighting == 'TRUE') {
+        for (var i in atoms) {
+            atoms[i].showWeighting = true;
+        }
+    }
+
+    return atoms;
+}
+
 module.exports = function() {
     // fetch data
     data = request('GET', config.dataUrl);
@@ -110,6 +120,7 @@ module.exports = function() {
     data.lastUpdated = getLastUpdated(data.groups);
     data.groups = addDynamicCharacters(data.groups, data.characters);
     data.groups = cleanType(data.groups);
+    data.groups = showWeighting(data.groups);
     data.groups = orderByGroup(data.groups);
 
     return data;
