@@ -54,11 +54,6 @@ module.exports = {
         return date;
     },
 
-    calculateText: function(el) {
-        /// do I need to remove this??
-        return $(el).attr('data-date');
-    },
-
     dynamicCharacters: function(character, i) {
         // TODO: Write this a little smarter than just looping 10 times...
         for (var i = 0; 10 > i; i++) {
