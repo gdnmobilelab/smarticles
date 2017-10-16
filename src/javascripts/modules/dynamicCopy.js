@@ -57,7 +57,6 @@ module.exports = {
     dynamicCharacters: function(character, i) {
         // TODO: Write this a little smarter than just looping 10 times...
         for (var i = 0; 10 > i; i++) {
-            console.log($('.character--' + i));
             $('.character--' + i).each(function(i, el) {
                 if (i === 0) {
                     $(el).addClass('character--long');
