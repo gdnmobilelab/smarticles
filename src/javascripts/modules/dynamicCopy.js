@@ -1,6 +1,8 @@
 var $ = require('../vendor/jquery.js');
 var timeTools = require('../helpers/timeTools');
 
+var datePattern = /time.[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{2,4}/g;
+
 module.exports = {
     init: function() {
         this.dynamicDates();
@@ -9,11 +11,28 @@ module.exports = {
 
     dynamicDates: function() {
         $('.atom__copy').each(function(i, el) {
-            $(el).html($(el).html().replace(/time.[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{2,4}/g, this.returnDynamicTime));
+            while((match = datePattern.exec($(el).html()))) {
+                this.populateDynamicDate(el, match.index, datePattern.lastIndex);
+            }
         }.bind(this));
     },
 
-    returnDynamicTime: function(date) {
+    populateDynamicDate: function(el, start, end) {
+        var precedingChars = $(el).html().substring(start - 2, start);
+        var match = $(el).html().substring(start, end);
+        var html = $(el).html();
+
+        console.log(match);
+
+        if (precedingChars.indexOf('.') !== -1) {
+            $(el).html(html.substring(0, start) + this.returnDynamicTime(match, true) + html.substring(end, html.length));
+            console.log('this is the start of a sentence');
+        } else {
+            $(el).html(html.substring(0, start) + this.returnDynamicTime(match, false) + html.substring(end, html.length));
+        }
+    },
+
+    returnDynamicTime: function(date, isNewSentence) {
         date = date.replace('time.', '').split('/');
         date = new Date(date[1] + '/' + date[0] + '/' + date[2]);
 
@@ -26,19 +45,20 @@ module.exports = {
             return 'Yesterday'
 
         } else if (delta < 7 * 24 * 60 * 60) { // less than five days
-            return 'On ' + timeTools.getDay(date);
+            return (isNewSentence ? 'O' : 'o') + 'n ' + timeTools.getDay(date);
 
         } else if (delta < 21 * 24 * 60 * 60) {
             return timeTools.getWeeks(delta) + ' ago';
 
         } else {
-            return 'On ' + date.getDate() + ' ' + timeTools.getMonth(date);
+            return (isNewSentence ? 'O' : 'o') + 'n ' + date.getDate() + ' ' + timeTools.getMonth(date);
         }
 
         return date;
     },
 
     calculateText: function(el) {
+        /// do I need to remove this??
         return $(el).attr('data-date');
     },
 
