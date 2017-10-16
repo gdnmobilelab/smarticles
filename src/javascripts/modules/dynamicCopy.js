@@ -22,11 +22,8 @@ module.exports = {
         var match = $(el).html().substring(start, end);
         var html = $(el).html();
 
-        console.log(match);
-
         if (precedingChars.indexOf('.') !== -1) {
             $(el).html(html.substring(0, start) + this.returnDynamicTime(match, true) + html.substring(end, html.length));
-            console.log('this is the start of a sentence');
         } else {
             $(el).html(html.substring(0, start) + this.returnDynamicTime(match, false) + html.substring(end, html.length));
         }
