@@ -35,13 +35,28 @@ function getLastUpdated(atoms) {
     return lastUpdated;
 }
 
+function returnDynamicCharacterHtml(i, character, isEndOfSentence) {
+    return '<span class=\'character character--' + i + '\'><span class=\'character__short\'>' + character.shortName + '</span><span class=\'character__long\'>' + character.longName + (isEndOfSentence ? ' ' : ', ') + '</span></span>';
+}
+
 function addDynamicCharacters(atoms, characters) {
     for (var i in characters) {
-        var html = '<span class=\'character character--' + i + '\'><span class=\'character__short\'>' + characters[i].shortName + '</span><span class=\'character__long\'>' + characters[i].longName + '</span></span>';
-        var regex = new RegExp('character.' + characters[i].id , 'g');
+        var characterPattern = new RegExp('character.' + characters[i].id , 'g');
+
+        var hasSubClause = characters[i].longName.indexOf(',') !== -1 ? true : false;
 
         for (var atom in atoms) {
-            atoms[atom].copy = atoms[atom].copy.replace(regex, html);
+            if (!hasSubClause) {
+                atoms[atom].copy = atoms[atom].copy.replace(characterPattern, returnDynamicCharacterHtml(i, characters[i], false));
+            } else {
+                while((match = characterPattern.exec(atoms[atom].copy))) {
+                    var start = match.index;
+                    var end = characterPattern.lastIndex;
+                    var endOfSentence = atoms[atom].copy.substring(end, end + 2).match(/[\,\.]/) ? true : false;
+
+                    atoms[atom].copy = atoms[atom].copy.substring(0, start) + returnDynamicCharacterHtml(i, characters[i], endOfSentence) + atoms[atom].copy.substring(end, atoms[atom].copy.length);
+                }
+            }
         }
     }
 
