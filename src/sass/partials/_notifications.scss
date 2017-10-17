@@ -1,6 +1,8 @@
 .notifications {
     display: flex;
     margin-bottom: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    padding-top: 7px;
 }
 
 .notification-button {
