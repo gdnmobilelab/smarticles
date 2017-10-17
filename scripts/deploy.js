@@ -24,7 +24,7 @@ var chalk = require( 'chalk' );
 var request = require('sync-request');
 var config = require('./config.js').config;
 
-var BUCKET = 'www.stg.gdnmobilelab.com';
+var BUCKET = 'www.gdnmobilelab.com';
 
 var BASE_DIR = path.resolve( '.build' );
 var version = Date.now();

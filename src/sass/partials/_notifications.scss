@@ -26,6 +26,12 @@
     display: none;
     align-self: center;
     margin-left: 6px;
+    line-height: 1.2;
+
+    span {
+        display: block;
+        opacity: 0.8;
+    }
 }
 
 @keyframes loading {
