@@ -24,3 +24,19 @@
     font-size: 16px;
     line-height: 22px;
 }
+
+.header__updated {
+    position: relative;
+}
+
+.header__what {
+    position: absolute;
+    right: 0;
+    color: $c-white;
+    text-decoration: none;
+    border-bottom: 1px solid $c-white;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
