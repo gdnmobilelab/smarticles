@@ -36,10 +36,10 @@ module.exports = {
         var delta = parseInt((new Date() - date) / 1000, 10);
 
         if (timeTools.isToday(date)) {
-            return 'Today'
+            return (isNewSentence ? 'Today' : 'today')
 
         } else if (timeTools.isYesterday(date)) {
-            return 'Yesterday'
+            return (isNewSentence ? 'Yesterday' : 'yesterday')
 
         } else if (delta < 7 * 24 * 60 * 60) { // less than five days
             return (isNewSentence ? 'O' : 'o') + 'n ' + timeTools.getDay(date);
