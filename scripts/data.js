@@ -63,10 +63,14 @@ function addDynamicCharacters(atoms, characters) {
     return atoms;
 }
 
+function replaceMuck(string) {
+    return string.replace(/“/g, '&ldquo;').replace(/”/g, '&rdquo;').replace(/’/g, '&rsquo;').replace(/—/g, '&mdash;').replace(/‘/g, '&lsquo;').replace(/–/g, '&ndash;');
+}
+
 function cleanType(atoms) {
     for (var i in atoms) {
-        atoms[i].title = atoms[i].title.replace(/“/g, '&ldquo;').replace(/”/g, '&rdquo;').replace(/“/g, '&ldquo;').replace(/”/g, '&rdquo;');
-        atoms[i].copy = atoms[i].copy.replace(/“/g, '&ldquo;').replace(/”/g, '&rdquo;').replace(/’/g, '&rsquo;').replace(/—/g, '&mdash;').replace(/‘/g, '&lsquo;');
+        atoms[i].title = replaceMuck(atoms[i].title)
+        atoms[i].copy = replaceMuck(atoms[i].copy)
     }
 
     return atoms;
@@ -85,7 +89,7 @@ function orderByGroup(atoms) {
                 groupedAtoms[groupName].atoms[Object.keys(groupedAtoms[groupName].atoms).length + 1] = atoms[i];
             } else {
                 groupedAtoms[groupName] = {
-                    groupName: groupName,
+                    groupName: replaceMuck(groupName),
                     groupType: atoms[i].groupType,
                     isFaq: (atoms[i].isFaq == 'TRUE' ? true : false),
                     atoms: {

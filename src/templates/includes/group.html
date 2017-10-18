@@ -6,9 +6,9 @@
             {{/if}}
 
             {{#if ../groupName}}
-                <h2 class='atom__title'>{{ ../groupName }}</h2>
+                <h2 class='atom__title'>{{{ ../groupName }}}</h2>
             {{else}}
-                <h2 class='atom__title'>{{ title }}</h2>
+                <h2 class='atom__title'>{{{ title }}}</h2>
             {{/if}}
 
             {{#switch type}}
