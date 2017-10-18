@@ -1,0 +1,15 @@
+.banner {
+    width: 100%;
+    background-color: $c-blue;
+    display: none;
+}
+
+.banner__copy {
+    padding: 6px 4px 12px;
+    max-width: 400px;
+    margin: 0 auto;
+    color: $c-white;
+    font-size: 16px;
+    line-height: 22px;
+    font-family: 'Guardian Sans Web';
+}
