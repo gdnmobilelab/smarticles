@@ -14,9 +14,13 @@
 
 .header__title {
     margin: 0;
-    padding: 6px 0 12px;
+    padding: 6px 48px 12px 0;
     font-size: 38px;
     font-weight: bold;
+    background-image: url('assets/images/roundel.svg');
+    background-size: 36px;
+    background-position: right 8px;
+    background-repeat: no-repeat;
 }
 
 .header__stub {
