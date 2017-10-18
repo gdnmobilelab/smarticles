@@ -26,6 +26,7 @@ module.exports = {
             appId: "849ca530-6a6d-4058-9d5e-4802b20c0654",
             allowLocalhostAsSecureOrigin: true,
             autoRegister: false,
+            persistNotification: true,
             notifyButton: {
                 enable: false
             }
