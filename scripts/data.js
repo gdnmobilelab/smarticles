@@ -36,7 +36,7 @@ function getLastUpdated(atoms) {
 }
 
 function returnDynamicCharacterHtml(i, character, isEndOfSentence) {
-    return '<span class=\'character character--' + i + '\'><span class=\'character__short\'>' + character.shortName + '</span><span class=\'character__long\'>' + character.longName + (isEndOfSentence ? ' ' : ', ') + '</span></span>';
+    return '<span class=\'character character--' + i + '\'><span class=\'character__short\'>' + character.shortName + '</span><span class=\'character__long\'>' + character.longName + '</span></span>';
 }
 
 function addDynamicCharacters(atoms, characters) {
