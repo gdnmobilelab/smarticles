@@ -1,5 +1,5 @@
 module.exports = {
     config: {
-        "dataUrl": "https://interactive.guim.co.uk/docsdata-test/1Rg5LcbLN-rnhA2kPUlgoSd_9QvXy1xmhk9y0cEA5Mwk.json"
+        "id": "1nAyAiJevwCkTN-tRwA3-s-hc5uza2MessKNmaLU6_wY"
     }
 }
