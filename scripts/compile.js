@@ -11,8 +11,6 @@ fs.mkdirsSync('.build');
 
 var data = getData();
 
-console.log(data.groups.group0.atoms[0]);
-
 // HTML
 var html = fs.readFileSync('src/templates/index.html', 'utf8');
 var partials = glob.readdirSync('src/templates/**/*.html');

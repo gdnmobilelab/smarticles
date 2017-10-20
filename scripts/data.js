@@ -2,6 +2,7 @@ var request = require('sync-request');
 var fs = require('fs-extra');
 var gsjson = require('google-spreadsheet-to-json');
 var deasync = require('deasync');
+var Entities = require('html-entities').AllHtmlEntities;
 
 var keys = require('../keys.json');
 var config = require('./config.js').config;
@@ -103,6 +104,20 @@ function orderByGroup(atoms) {
     return groupedAtoms;
 }
 
+function cleanCopy(atoms) {
+    var entities = new Entities();
+
+    for (var i in atoms) {
+        atoms[i].title = entities.encode(atoms[i].title);
+        atoms[i].copy = entities.encode(atoms[i].copy);
+        if (atoms[i].quoteByline) {
+            atoms[i].quoteByline = entities.encode(atoms[i].quoteByline);
+        }
+    }
+
+    return atoms;
+}
+
 function showWeighting(atoms) {
     if (data.furniture.showWeighting) {
         for (var i in atoms) {
@@ -143,6 +158,7 @@ module.exports = function() {
         // manipulate and clean data
         data.groups = createTimeStamps(data.groups);
         data.lastUpdated = getLastUpdated(data.groups);
+        data.groups = cleanCopy(data.groups);
         data.groups = addDynamicCharacters(data.groups, data.characters);
         data.groups = showWeighting(data.groups);
         data.groups = orderByGroup(data.groups);
