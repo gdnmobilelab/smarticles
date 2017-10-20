@@ -51,7 +51,6 @@ function addDynamicCharacters(atoms, characters) {
         var hasSubClause = characters[i].longName.indexOf(',') !== -1 ? true : false;
 
         for (var atom in atoms) {
-            console.log(atoms[atom].copy);
             if (!hasSubClause && atoms[atom].copy) {
                 atoms[atom].copy = atoms[atom].copy.replace(characterPattern, returnDynamicCharacterHtml(i, characters[i], false));
             } else {
@@ -69,15 +68,6 @@ function addDynamicCharacters(atoms, characters) {
     return atoms;
 }
 
-function cleanType(atoms) {
-    for (var i in atoms) {
-        atoms[i].title = replaceMuck(atoms[i].title)
-        atoms[i].copy = replaceMuck(atoms[i].copy)
-    }
-
-    return atoms;
-}
-
 function orderByGroup(atoms) {
     // put all atoms into objects
     var groupedAtoms = {};
@@ -87,8 +77,6 @@ function orderByGroup(atoms) {
         var groupName = atoms[i].group;
 
         if (atoms[i].group) {
-            console.log(atoms[i].isFaq);
-            console.log(typeof atoms[i].isFaq);
             if (groupedAtoms[groupName]) {
                 groupedAtoms[groupName].atoms[Object.keys(groupedAtoms[groupName].atoms).length + 1] = atoms[i];
             } else {
@@ -116,8 +104,6 @@ function orderByGroup(atoms) {
 }
 
 function showWeighting(atoms) {
-    console.log(data);
-    console.log(data.furniture);
     if (data.furniture.showWeighting) {
         for (var i in atoms) {
             atoms[i].showWeighting = true;
@@ -154,13 +140,10 @@ module.exports = function() {
             lastUpdated: new Date()
         }
 
-        console.log(data);
-
         // manipulate and clean data
         data.groups = createTimeStamps(data.groups);
         data.lastUpdated = getLastUpdated(data.groups);
         data.groups = addDynamicCharacters(data.groups, data.characters);
-//         data.groups = cleanType(data.groups);
         data.groups = showWeighting(data.groups);
         data.groups = orderByGroup(data.groups);
 
