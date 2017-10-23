@@ -1,8 +1,14 @@
 var request = require('sync-request');
 var fs = require('fs-extra');
+var gsjson = require('google-spreadsheet-to-json');
+var deasync = require('deasync');
+var Entities = require('html-entities').AllHtmlEntities;
+
+var keys = require('../keys.json');
 var config = require('./config.js').config;
 
-var data;
+var isDone = false,
+    data;
 
 function getFurniture(furniture) {
     var organisedFurniture = {}
@@ -46,7 +52,7 @@ function addDynamicCharacters(atoms, characters) {
         var hasSubClause = characters[i].longName.indexOf(',') !== -1 ? true : false;
 
         for (var atom in atoms) {
-            if (!hasSubClause) {
+            if (!hasSubClause && atoms[atom].copy) {
                 atoms[atom].copy = atoms[atom].copy.replace(characterPattern, returnDynamicCharacterHtml(i, characters[i], false));
             } else {
                 while((match = characterPattern.exec(atoms[atom].copy))) {
@@ -58,19 +64,6 @@ function addDynamicCharacters(atoms, characters) {
                 }
             }
         }
-    }
-
-    return atoms;
-}
-
-function replaceMuck(string) {
-    return string.replace(/“/g, '&ldquo;').replace(/”/g, '&rdquo;').replace(/’/g, '&rsquo;').replace(/—/g, '&mdash;').replace(/‘/g, '&lsquo;').replace(/–/g, '&ndash;');
-}
-
-function cleanType(atoms) {
-    for (var i in atoms) {
-        atoms[i].title = replaceMuck(atoms[i].title)
-        atoms[i].copy = replaceMuck(atoms[i].copy)
     }
 
     return atoms;
@@ -89,9 +82,9 @@ function orderByGroup(atoms) {
                 groupedAtoms[groupName].atoms[Object.keys(groupedAtoms[groupName].atoms).length + 1] = atoms[i];
             } else {
                 groupedAtoms[groupName] = {
-                    groupName: replaceMuck(groupName),
+                    groupName: groupName,
                     groupType: atoms[i].groupType,
-                    isFaq: (atoms[i].isFaq == 'TRUE' ? true : false),
+                    isFaq: atoms[i].isFaq,
                     atoms: {
                         0: atoms[i]
                     }
@@ -99,7 +92,7 @@ function orderByGroup(atoms) {
             }
         } else {
             groupedAtoms['group' + nonGroupedKey] = {
-                isFaq: (atoms[i].isFaq == 'TRUE' ? true : false),
+                isFaq: atoms[i].isFaq,
                 atoms: {
                     0: atoms[i]
                 }
@@ -111,8 +104,22 @@ function orderByGroup(atoms) {
     return groupedAtoms;
 }
 
+function cleanCopy(atoms) {
+    var entities = new Entities();
+
+    for (var i in atoms) {
+        atoms[i].title = entities.encode(atoms[i].title);
+        atoms[i].copy = entities.encode(atoms[i].copy);
+        if (atoms[i].quoteByline) {
+            atoms[i].quoteByline = entities.encode(atoms[i].quoteByline);
+        }
+    }
+
+    return atoms;
+}
+
 function showWeighting(atoms) {
-    if (data.furniture.showWeighting == 'TRUE') {
+    if (data.furniture.showWeighting) {
         for (var i in atoms) {
             atoms[i].showWeighting = true;
         }
@@ -121,26 +128,47 @@ function showWeighting(atoms) {
     return atoms;
 }
 
+function fetchData(id, callback) {
+    gsjson({
+        spreadsheetId: id,
+        allWorksheets: true,
+        credentials: keys
+    })
+    .then(function(result) {
+        callback(result);
+    })
+    .then(function(err) {
+        if (err) {
+            console.log(err);
+        }
+    });
+}
+
 module.exports = function() {
     // fetch data
-    data = request('GET', config.dataUrl);
-    data = JSON.parse(data.getBody('utf8'));
+    fetchData(config.id, function(spreadsheet) {
+        // data structure
+        data = {
+            groups: spreadsheet[0],
+            furniture: getFurniture(spreadsheet[1]),
+            characters: spreadsheet[2],
+            lastUpdated: new Date()
+        }
 
-    // data structure
-    data = {
-        groups: data.sheets.Atoms,
-        furniture: getFurniture(data.sheets.Furniture),
-        characters: data.sheets.Characters,
-        lastUpdated: new Date()
-    }
+        // manipulate and clean data
+        data.groups = createTimeStamps(data.groups);
+        data.lastUpdated = getLastUpdated(data.groups);
+        data.groups = cleanCopy(data.groups);
+        data.groups = addDynamicCharacters(data.groups, data.characters);
+        data.groups = showWeighting(data.groups);
+        data.groups = orderByGroup(data.groups);
 
-    // manipulate and clean data
-    data.groups = createTimeStamps(data.groups);
-    data.lastUpdated = getLastUpdated(data.groups);
-    data.groups = addDynamicCharacters(data.groups, data.characters);
-    data.groups = cleanType(data.groups);
-    data.groups = showWeighting(data.groups);
-    data.groups = orderByGroup(data.groups);
+        isDone = true;
+    });
+
+    deasync.loopWhile(function() {
+        return !isDone;
+    });
 
     return data;
 };

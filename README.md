@@ -6,7 +6,12 @@ They're articles but they're smart
 - [Node](https://nodejs.org/en/download/)
 
 ## Installation
-Clone the repo and run `npm i` to install dependencies
+Clone the repo and run `npm i` to install dependencies.
+
+Duplicate `keys.example.json` and rename it to `keys.json` then populate with appropriate keys.
+
+## Data
+The data for a Smarticle needs to come from a [Google Spreadsheet Template](https://docs.google.com/spreadsheets/d/1NDOhvRjHdcnWNccju8XcXtiVcsbGcqYTN7cPCV59olg) that should be duplicated. Then that spreadsheet should be shared with the Smarticle Google Service Account at `smarticles@smarticle-183516.iam.gserviceaccount.com`.
 
 ## Development
 Run `npm run dev` to watch for changes and to host the site locally at [`http://localhost:8000`](http://localhost:8000).
