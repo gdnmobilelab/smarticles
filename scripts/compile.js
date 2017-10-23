@@ -59,7 +59,9 @@ deasync.loopWhile(function() {
 });
 
 // Data
+console.log('writing file');
 fs.writeFileSync('.build/characters.json', JSON.stringify(data.characters));
+fs.writeFileSync('.build/data.json', JSON.stringify(data));
 
 fs.copySync('src/assets/', '.build/assets/');
 fs.copySync('root/manifest.json', '.build/manifest.json');
