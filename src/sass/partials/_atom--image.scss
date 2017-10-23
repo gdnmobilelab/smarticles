@@ -5,3 +5,12 @@
     margin-left: -8px;
     width: calc(100% + 16px);
 }
+
+.atom-image__copy {
+    color: $c-grey;
+    background-image: url('assets/images/camera.svg');
+    background-repeat: no-repeat;
+    background-size: 1.2em;
+    background-position: left .1em;
+    text-indent: 1.5em;
+}
