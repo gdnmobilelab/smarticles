@@ -40,9 +40,6 @@ while (data == null) {
     }
 }
 
-console.log(data);
-console.log('hey');
-
 var slug = data.furniture.slug;
 
 if (!slug) {
