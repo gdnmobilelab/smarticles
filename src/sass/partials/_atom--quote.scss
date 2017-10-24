@@ -22,7 +22,7 @@
     margin-bottom: -18px;
     margin-left: calc(55% + 6px);
 
-    .group--collapsed .atom--visible + .atom--visible & {
+    .group--collapsed .atom + .atom & {
         opacity: 0;
     }
 }

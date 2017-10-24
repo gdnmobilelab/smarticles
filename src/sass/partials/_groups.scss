@@ -33,16 +33,16 @@
 .group--collapsed {
     margin-bottom: 12px;
 
-    .atom--visible {
+    .atom {
         margin-bottom: 0;
     }
 
-    .atom--visible + .atom--visible + .group__expand-button {
+    .atom + .atom + .group__expand-button {
         display: block;
     }
 
     @for $i from 1 through 8 {
-        .atom--visible[data-shrink='#{$i}'] {
+        .atom[data-shrink='#{$i}'] {
             background-color: darken($c-light-grey, $i * 2%);
             transform: scale(-($i) * 0.02 + 1, 1);
         }
