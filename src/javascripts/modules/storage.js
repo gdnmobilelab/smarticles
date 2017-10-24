@@ -25,7 +25,16 @@ module.exports = {
                     timers[id] = setTimeout(function() {
                         if ($(el).visible()) {
                             $(el).addClass('has-read');
-                            console.log(id + ' has been read');
+
+                            var seen = this.get('seen');
+
+                            if (seen) {
+                                seen.push(id);
+                                this.set('seen', seen);
+                            } else {
+                                this.set('seen', [id]);
+                            }
+
                         } else {
                             clearTimeout(timers[id]);
                             delete timers[id];
@@ -68,6 +77,10 @@ module.exports = {
         var slug = $('body').attr('data-slug');
         var current = this.read(slug);
 
-        return current[key];
+        if (current[key]) {
+            return current[key];
+        } else {
+            return false;
+        }
     }
 }
