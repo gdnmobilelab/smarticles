@@ -1,9 +1,39 @@
 var $ = require('../vendor/jquery.js');
+var visible = require('../vendor/jquery.visible.js');
+
+var timers = {};
 
 module.exports = {
     init: function() {
         this.set('lastVisited', new Date());
+        this.bindings();
         this.increaseVisitCount();
+    },
+
+    bindings: function() {
+        $(window).scroll(function() {
+            this.checkAtomsInView();
+        }.bind(this));
+    },
+
+    checkAtomsInView: function() {
+        $('.atom').each(function(i, el) {
+            if ($(el).visible()) {
+                var id = $(el).attr('data-id');
+                if (!$(el).hasClass('has-read') && !timers[id]) {
+
+                    timers[id] = setTimeout(function() {
+                        if ($(el).visible()) {
+                            $(el).addClass('has-read');
+                            console.log(id + ' has been read');
+                        } else {
+                            clearTimeout(timers[id]);
+                            delete timers[id];
+                        }
+                    }.bind(this), 2000);
+                }
+            }
+        }.bind(this));
     },
 
     increaseVisitCount: function() {

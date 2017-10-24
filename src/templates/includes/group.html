@@ -1,6 +1,6 @@
 <div class='group{{#if groupType }} group--{{ groupType }}{{/if}}'>
     {{#each atoms}}
-        <li class='atom atom--{{ type }}' data-timestamp='{{ timeStamp }}'>
+        <li class='atom atom--{{ type }}' data-id='{{ id }}' data-timestamp='{{ timeStamp }}'>
             {{#if showWeighting }}
                 <span class='atom__weighting atom__weighting--{{ weight }}'>{{ weight }}</span>
             {{/if}}
