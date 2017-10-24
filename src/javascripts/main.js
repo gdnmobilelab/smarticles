@@ -4,6 +4,7 @@ var lastUpdated = require('./modules/lastUpdated');
 var groups = require('./modules/groups');
 var dynamicCopy = require('./modules/dynamicCopy');
 var notifications = require('./modules/notifications');
+var storage = require('./modules/storage');
 
 injectAtoms.init(function() {
     banner.init();
@@ -11,4 +12,5 @@ injectAtoms.init(function() {
     groups.init();
     dynamicCopy.init();
     notifications.init();
+    storage.init();
 });
