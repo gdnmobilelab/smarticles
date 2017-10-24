@@ -6,10 +6,10 @@ module.exports = {
     },
 
     set: function(key, value) {
-        localStorage.setItem($('body').attr('data-id') + '-' + key, value);
+        localStorage.setItem($('body').attr('data-slug') + '-' + key, value);
     },
 
     get: function(key) {
-        return localStorage.getItem($('body').attr('data-id') + '-' + key);
+        return localStorage.getItem($('body').attr('data-slug') + '-' + key);
     }
 }

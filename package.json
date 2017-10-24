@@ -36,6 +36,7 @@
     "sass": "^1.0.0-beta.1",
     "scriptloader": "^1.1.2",
     "stevedore": "^0.1.4",
+    "stringify": "^5.1.0",
     "sync-request": "^4.1.0"
   }
 }

@@ -2,33 +2,15 @@
 <html>
     {{> structure/head }}
 
-<body data-id='{{ furniture.slug }}' data-filtering='{{ furniture.filtering }}'>
+<body data-slug='{{ furniture.slug }}' data-filtering='{{ furniture.filtering }}' data-id='{{ id }}'>
     <div class='banner'>
         <div class='banner__copy'>This experimental format is not fully supported in this browser. For the best experience, please view on Chrome for Android or desktop</div>
     </div>
 
     {{> includes/header }}
 
-    <ul class='atoms'>
-        {{#each groups}}
-            {{#unless isFaq}}
-                {{> includes/group }}
-            {{/unless}}
-        {{/each}}
-    </ul>
-
-    <div class='empty'>
-        <h2 class='empty__message'>There are no new updates on {{ furniture.title }} <span>Now go outside</span></h2>
+    <div class='atoms-container'>
     </div>
-
-    <ul class='atoms atoms--faqs'>
-        <h1 class='atoms__title'>What else is happening with this?</h1>
-        {{#each groups}}
-            {{#if isFaq}}
-                {{> includes/group }}
-            {{/if}}
-        {{/each}}
-    </ul>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-77348538-9"></script>
     <script>

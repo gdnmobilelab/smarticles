@@ -5,6 +5,7 @@ var handlebars = require('handlebars');
 var getData = require('./data.js');
 var deasync = require('deasync');
 var browserify = require('browserify');
+var stringify = require('stringify');
 
 fs.removeSync('.build');
 fs.mkdirsSync('.build');
@@ -44,7 +45,9 @@ fs.writeFileSync('.build/styles.css', css);
 
 // JS
 var isDone = false;
-browserify('./src/javascripts/main.js').bundle(function(err, buf) {
+browserify('./src/javascripts/main.js').transform(stringify, {
+    appliesTo: { includeExtensions: ['.html'] }
+}).bundle(function(err, buf) {
     if (err) {
         console.log(err);
     }
