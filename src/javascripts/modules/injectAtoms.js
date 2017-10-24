@@ -1,4 +1,5 @@
 var $ = require('../vendor/jquery.js');
+var storage = require('../modules/storage.js');
 var handlebars = require('handlebars');
 var request = require('sync-request');
 
@@ -29,7 +30,8 @@ module.exports = {
     },
 
     fetchData: function() {
-        var res = request('GET', 'http://localhost:3000/?id=' + $('body').attr('data-id') + '&seen=1,2,4,8,12&visit=2');
+        console.log('http://localhost:3000/?id=' + $('body').attr('data-id') + '&seen=' + storage.get('seen').toString() + '&visit=' + storage.get('visit'));
+        var res = request('GET', 'http://localhost:3000/?id=' + $('body').attr('data-id') + '&seen=' + storage.get('seen').toString() + '&visit=' + storage.get('visit'));
 
         this.createHTML(JSON.parse(res.body.toString()));
     },
