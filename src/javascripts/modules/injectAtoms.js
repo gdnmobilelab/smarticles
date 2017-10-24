@@ -29,7 +29,7 @@ module.exports = {
     },
 
     fetchData: function() {
-        var res = request('GET', 'http://localhost:3000/?id=' + $('body').attr('data-id') + '&seen=0');
+        var res = request('GET', 'http://localhost:3000/?id=' + $('body').attr('data-id') + '&seen=1,2,4,8,12&visit=2');
 
         this.createHTML(JSON.parse(res.body.toString()));
     },
