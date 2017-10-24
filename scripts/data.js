@@ -1,6 +1,4 @@
 var request = require('sync-request');
-var fs = require('fs-extra');
-var deasync = require('deasync');
 
 module.exports = function() {
     var isDone = false;
