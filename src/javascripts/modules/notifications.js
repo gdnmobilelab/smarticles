@@ -16,7 +16,7 @@ module.exports = {
     },
 
     setValues: function() {
-        pageId = $('body').attr('data-id');
+        pageId = $('body').attr('data-slug');
     },
 
     createClient: function() {

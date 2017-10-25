@@ -1,9 +1,10 @@
 var watch = require('node-watch');
 var cmd = require('node-cmd');
 var static = require('node-static');
+var chalk = require( 'chalk' );
 
 watch('./src/', { recursive: true }, function(evt, file) {
-    console.log('change to ' + file);
+    console.log(chalk.yellow('Change to ' + file));
     cmd.get('node scripts/compile.js');
 });
 
@@ -14,7 +15,7 @@ var file = new static.Server('./.build/', {
     }
 });
 
-console.log('serving at http://localhost:8000/index.html')
+console.log(chalk.green('serving at http://localhost:8000/index.html'))
 
 require('http').createServer(function (request, response) {
     request.addListener('end', function () {
