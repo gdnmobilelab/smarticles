@@ -30,8 +30,7 @@ module.exports = {
     },
 
     fetchData: function() {
-        console.log('http://localhost:3000/?id=' + $('body').attr('data-id') + '&seen=' + storage.get('seen').toString() + '&visit=' + storage.get('visit'));
-        var res = request('GET', 'http://localhost:3000/?id=' + $('body').attr('data-id') + '&seen=' + storage.get('seen').toString() + '&visit=' + storage.get('visit'));
+        var res = request('GET', 'https://bob.gdnmobilelab.com/?id=' + $('body').attr('data-id') + '&seen=' + storage.get('seen').toString() + '&visit=' + storage.get('visit'));
 
         this.createHTML(JSON.parse(res.body.toString()));
     },
