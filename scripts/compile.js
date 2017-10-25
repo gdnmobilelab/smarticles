@@ -6,6 +6,7 @@ var getData = require('./data.js');
 var deasync = require('deasync');
 var browserify = require('browserify');
 var stringify = require('stringify');
+var chalk = require( 'chalk' );
 
 fs.removeSync('.build');
 fs.mkdirsSync('.build');
@@ -13,8 +14,6 @@ fs.mkdirsSync('.build');
 var data = getData();
 
 var useLocalAPI = process.argv.slice(2);
-console.log(useLocalAPI);
-console.log(typeof useLocalAPI);
 
 // HTML
 var html = fs.readFileSync('src/templates/index.html', 'utf8');
@@ -53,7 +52,7 @@ browserify('./src/javascripts/main.js').transform(stringify, {
     appliesTo: { includeExtensions: ['.html'] }
 }).bundle(function(err, buf) {
     if (err) {
-        console.log(err);
+        console.log(chalk.red(err));
     }
 
     var compiled = buf.toString();
@@ -66,7 +65,7 @@ deasync.loopWhile(function() {
 });
 
 // Data
-console.log('writing file');
+console.log(chalk.yellow('Compiling Assets'));
 fs.writeFileSync('.build/characters.json', JSON.stringify(data.characters));
 fs.writeFileSync('.build/data.json', JSON.stringify(data));
 
