@@ -11,9 +11,8 @@ var chalk = require( 'chalk' );
 fs.removeSync('.build');
 fs.mkdirsSync('.build');
 
-var data = getData();
-
 var useLocalAPI = process.argv.slice(2);
+var data = getData(useLocalAPI);
 
 // HTML
 var html = fs.readFileSync('src/templates/index.html', 'utf8');
