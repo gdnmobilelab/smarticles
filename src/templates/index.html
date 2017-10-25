@@ -2,10 +2,12 @@
 <html>
     {{> structure/head }}
 
-<body data-slug='{{ furniture.slug }}' data-filtering='{{ furniture.filtering }}' data-id='{{ id }}'>
+<body data-slug='{{ furniture.slug }}' data-filtering='{{ furniture.filtering }}' data-id='{{ id }}' {{#if isDebug}}data-is-debug{{/if}}>
     <div class='banner'>
         <div class='banner__copy'>This experimental format is not fully supported in this browser. For the best experience, please view on Chrome for Android or desktop</div>
     </div>
+
+    {{ isDebug }}
 
     {{> includes/header }}
 

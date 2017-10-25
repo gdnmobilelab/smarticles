@@ -30,7 +30,10 @@ module.exports = {
     },
 
     fetchData: function() {
-        var res = request('GET', 'https://bob.gdnmobilelab.com/?id=' + $('body').attr('data-id') + '&seen=' + storage.get('seen').toString() + '&visit=' + storage.get('visit'));
+        var isDebug = $('body').attr('data-is-debug');
+        var path = isDebug == undefined ? 'https://bob.gdnmobilelab.com' : 'http://localhost:3000';
+        console.log(path);
+        var res = request('GET', path + '/?id=' + $('body').attr('data-id') + '&seen=' + storage.get('seen').toString() + '&visit=' + storage.get('visit'));
 
         this.createHTML(JSON.parse(res.body.toString()));
     },
