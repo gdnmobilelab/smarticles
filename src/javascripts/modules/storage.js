@@ -8,6 +8,7 @@ module.exports = {
         this.set('lastVisited', new Date());
         this.bindings();
         this.increaseVisitCount();
+        this.checkAtomsInView();
     },
 
     bindings: function() {
