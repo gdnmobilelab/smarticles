@@ -32,11 +32,7 @@ module.exports = {
                                 time: new Date()
                             };
 
-                            console.log(object);
-
                             var seen = this.get('seen');
-
-                            console.log(seen);
 
                             if (seen) {
                                 seen.push(object);
