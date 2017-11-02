@@ -34,6 +34,9 @@ module.exports = {
         var path = isDebug == undefined ? 'https://bob.gdnmobilelab.com' : 'http://localhost:3000';
         var res = request('GET', path + '/?id=' + $('body').attr('data-id') + '&seen=' + storage.get('seen').toString() + '&visit=' + storage.get('visit'));
 
+        $('.banner').attr('style', 'display: block;');
+        $('.banner__copy').text('Seen:' + storage.get('seen').toString() + ' | Visit:' + storage.get('visit'))
+
         this.createHTML(JSON.parse(res.body.toString()));
     },
 

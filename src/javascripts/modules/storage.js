@@ -27,13 +27,22 @@ module.exports = {
                         if ($(el).visible()) {
                             $(el).addClass('has-read');
 
+                            var object = {
+                                id: id,
+                                time: new Date()
+                            };
+
+                            console.log(object);
+
                             var seen = this.get('seen');
 
+                            console.log(seen);
+
                             if (seen) {
-                                seen.push(id);
+                                seen.push(object);
                                 this.set('seen', seen);
                             } else {
-                                this.set('seen', [id]);
+                                this.set('seen', [object]);
                             }
 
                         } else {
