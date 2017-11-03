@@ -4,6 +4,11 @@
     padding-bottom: 48px;
     font-family: 'Guardian Sans Web';
     margin-bottom: -42px;
+
+    .is-empty & {
+        padding-bottom: 12px;
+        margin-bottom: 0;
+    }
 }
 
 .header__inner {

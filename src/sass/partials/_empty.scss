@@ -3,24 +3,34 @@
     max-width: 400px;
     padding: 0 10px;
     margin: 0 auto;
-}
 
-.has-no-atoms {
-    .empty {
+    .is-empty & {
         display: block;
     }
 }
 
 .empty__message {
-    margin-top: 48px;
+    margin-top: 12px;
     font-family: 'Guardian Sans Web';
     font-weight: normal;
     font-size: 16px;
     line-height: 22px;
     color: $c-black;
 
-    span {
+    strong {
         display: block;
-        color: $c-grey;
+    }
+}
+
+.empty {
+    .notifications {
+        font-family: 'Guardian Sans Web';
+        font-size: 16px;
+        line-height: 22px;
+        color: $c-light-blue;
+    }
+
+    .notification-button {
+        background-color: $c-light-blue;
     }
 }

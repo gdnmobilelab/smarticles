@@ -1,14 +1,17 @@
-<ul class='atoms'>
+<div class='empty'>
+    <h2 class='empty__message'>
+        <strong>No news is good news?</strong>
+        With notifications turned on you'll be notified when something significant happens in this story
+    </h2>
+</div>
+
+<ul class='atoms atoms--main'>
     {{#each groups}}
         {{#unless isFaq}}
             {{> includes/group }}
         {{/unless}}
     {{/each}}
 </ul>
-
-<div class='empty'>
-    <h2 class='empty__message'>There are no new updates on {{ furniture.title }} <span>Now go outside</span></h2>
-</div>
 
 {{#if hasFaqs}}
     <ul class='atoms atoms--faqs'>

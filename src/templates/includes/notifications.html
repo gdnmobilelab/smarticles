@@ -1,8 +1,12 @@
-<!--
 <div class='notifications is-loading'>
     <div class='notification-button'>
-        <img class='notification-icon notification-icon--on' src='assets/images/notifications--on.svg' />
-        <img class='notification-icon notification-icon--off' src='assets/images/notifications--off.svg' />
+        {{#if isWhite}}
+            <img class='notification-icon notification-icon--on' src='assets/images/notifications-white--on.svg' />
+            <img class='notification-icon notification-icon--off' src='assets/images/notifications-white--off.svg' />
+        {{ else }}
+            <img class='notification-icon notification-icon--on' src='assets/images/notifications--on.svg' />
+            <img class='notification-icon notification-icon--off' src='assets/images/notifications--off.svg' />
+        {{/if}}
     </div>
 
     <div class='notification-label notification-label--subscribed'>Tap to turn off notifications</div>
@@ -10,4 +14,3 @@
     <div class='notification-label notification-label--not-supported'>Notifications are not supported</div>
     <div class='notification-label notification-label--loading'>...</div>
 </div>
--->

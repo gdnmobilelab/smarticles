@@ -28,7 +28,6 @@ module.exports = {
         callback = addedCallback;
 
         this.fetchData();
-
     },
 
     fetchData: function() {
@@ -81,6 +80,10 @@ module.exports = {
 
         var headerTemplate = handlebars.compile(headerHtml);
         $('.header-container').html(headerTemplate(data));
+
+        if ($('.atoms--main').is(':empty')) {
+            $('html').addClass('is-empty');
+        }
 
         callback();
     }

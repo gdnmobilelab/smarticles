@@ -31,7 +31,7 @@ module.exports = {
 
                             var object = {
                                 id: id,
-                                time: new Date(),
+                                time: seen[id] ? seen[id].time : new Date(),
                                 seen: seen[id] ? seen[id].seen + 1 : 1
                             };
 
