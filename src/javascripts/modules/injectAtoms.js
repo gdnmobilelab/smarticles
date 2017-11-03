@@ -32,12 +32,26 @@ module.exports = {
     fetchData: function() {
         var isDebug = $('body').attr('data-is-debug');
         var path = isDebug == undefined ? 'https://bob.gdnmobilelab.com' : 'http://localhost:3000';
-        var res = request('GET', path + '/?id=' + $('body').attr('data-id') + '&seen=' + storage.get('seen').toString() + '&visit=' + storage.get('visit'));
+        var res = request('GET', path + '/?id=' + $('body').attr('data-id') + '&seen=' + this.calculateSeenAtomsToSend() + '&visit=' + (storage.get('visit') ? storage.get('visit') : 1));
 
         $('.banner').attr('style', 'display: block;');
-        $('.banner__copy').text('Seen:' + storage.get('seen').toString() + ' | Visit:' + storage.get('visit'))
+        $('.banner__copy').text('Seen:' + this.calculateSeenAtomsToSend() + ' | Visit:' + (storage.get('visit') ? storage.get('visit') : 1))
 
         this.createHTML(JSON.parse(res.body.toString()));
+    },
+
+    calculateSeenAtomsToSend: function() {
+        var seen = storage.get('seen');
+        var now = new Date();
+        var sentSeen = [];
+
+        for (var i in seen) {
+            if ((now - new Date(seen[i].time)) > (10 * 60 * 1000)) {
+                sentSeen.push(seen[i].id);
+            }
+        }
+
+        return sentSeen.toString();
     },
 
     createHTML: function(data) {

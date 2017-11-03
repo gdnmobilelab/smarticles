@@ -27,6 +27,7 @@ module.exports = {
                         if ($(el).visible()) {
                             $(el).addClass('has-read');
 
+                            // TODO add number of times seen in here
                             var object = {
                                 id: id,
                                 time: new Date()
