@@ -29,10 +29,10 @@ module.exports = {
 
                             var seen = this.get('seen');
 
-                            // TODO add number of times seen in here
                             var object = {
                                 id: id,
-                                time: new Date()
+                                time: new Date(),
+                                seen: seen[id] ? seen[id].seen + 1 : 1
                             };
 
                             if (!seen) {
