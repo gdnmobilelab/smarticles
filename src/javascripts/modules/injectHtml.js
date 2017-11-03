@@ -1,25 +1,7 @@
 var $ = require('../vendor/jquery.js');
 var storage = require('../modules/storage.js');
-var handlebars = require('handlebars');
-var request = require('sync-request');
 
-var headerHtml = require('../../templates/header.html');
-var atomsHtml = require('../../templates/atoms.html');
-var partials = {
-    atoms: {
-        bio: require('../../templates/atoms/bio.html'),
-        graphic: require('../../templates/atoms/graphic.html'),
-        image: require('../../templates/atoms/image.html'),
-        quote: require('../../templates/atoms/quote.html'),
-        text: require('../../templates/atoms/text.html'),
-        tweet: require('../../templates/atoms/tweet.html'),
-        video: require('../../templates/atoms/video.html'),
-    },
-    includes: {
-        group: require('../../templates/includes/group.html'),
-        notifications: require('../../templates/includes/notifications.html')
-    }
-}
+var handlebars = require('handlebars');
 
 var callback;
 
@@ -32,13 +14,15 @@ module.exports = {
 
     fetchData: function() {
         var isDebug = $('body').attr('data-is-debug');
-        var path = isDebug == undefined ? 'https://bob.gdnmobilelab.com' : 'http://localhost:3000';
-        var res = request('GET', path + '/?id=' + $('body').attr('data-id') + '&seen=' + this.calculateSeenAtomsToSend() + '&visit=' + (storage.get('visit') ? storage.get('visit') : 1));
+        var apiPath = isDebug == undefined ? 'https://bob.gdnmobilelab.com' : 'http://localhost:3000';
+        var path = apiPath + '/?id=' + $('body').attr('data-id') + '&seen=' + this.calculateSeenAtomsToSend() + '&visit=' + (storage.get('visit') ? storage.get('visit') : 1);
 
         $('.banner').attr('style', 'display: block;');
-        $('.banner__copy').text('Seen:' + this.calculateSeenAtomsToSend() + ' | Visit:' + (storage.get('visit') ? storage.get('visit') : 1))
+        $('.banner__copy').text('Seen:' + this.calculateSeenAtomsToSend() + ' | Visit:' + (storage.get('visit') ? storage.get('visit') : 1));
 
-        this.createHTML(JSON.parse(res.body.toString()));
+        $.get(path, function(data) {
+            this.createHTML(data);
+        }.bind(this));
     },
 
     calculateSeenAtomsToSend: function() {
@@ -56,6 +40,24 @@ module.exports = {
     },
 
     createHTML: function(data) {
+        var headerHtml = require('../../templates/header.html');
+        var atomsHtml = require('../../templates/atoms.html');
+        var partials = {
+            atoms: {
+                bio: require('../../templates/atoms/bio.html'),
+                graphic: require('../../templates/atoms/graphic.html'),
+                image: require('../../templates/atoms/image.html'),
+                quote: require('../../templates/atoms/quote.html'),
+                text: require('../../templates/atoms/text.html'),
+                tweet: require('../../templates/atoms/tweet.html'),
+                video: require('../../templates/atoms/video.html'),
+            },
+            includes: {
+                group: require('../../templates/includes/group.html'),
+                notifications: require('../../templates/includes/notifications.html')
+            }
+        }
+
         handlebars.registerHelper("switch", function(value, options) {
             this._switch_value_ = value;
             var html = options.fn(this); // Process the body of the switch block
