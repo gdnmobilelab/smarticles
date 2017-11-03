@@ -3,7 +3,8 @@ var storage = require('../modules/storage.js');
 var handlebars = require('handlebars');
 var request = require('sync-request');
 
-var templateHtml = require('../../templates/atoms.html');
+var headerHtml = require('../../templates/header.html');
+var atomsHtml = require('../../templates/atoms.html');
 var partials = {
     atoms: {
         bio: require('../../templates/atoms/bio.html'),
@@ -15,7 +16,8 @@ var partials = {
         video: require('../../templates/atoms/video.html'),
     },
     includes: {
-        group: require('../../templates/includes/group.html')
+        group: require('../../templates/includes/group.html'),
+        notifications: require('../../templates/includes/notifications.html')
     }
 }
 
@@ -74,8 +76,13 @@ module.exports = {
             }
         }
 
-        var template = handlebars.compile(templateHtml);
-        $('.atoms-container').html(template(data));
+        var atomTemplate = handlebars.compile(atomsHtml);
+        $('.atoms-container').html(atomTemplate(data));
+
+        var headerTemplate = handlebars.compile(headerHtml);
+        $('.header-container').html(headerTemplate(data));
+
+        console.log(headerTemplate(data));
 
         callback();
     }
