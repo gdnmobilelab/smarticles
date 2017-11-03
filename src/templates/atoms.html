@@ -10,11 +10,13 @@
     <h2 class='empty__message'>There are no new updates on {{ furniture.title }} <span>Now go outside</span></h2>
 </div>
 
-<ul class='atoms atoms--faqs'>
-    <h1 class='atoms__title'>What else is happening with this?</h1>
-    {{#each groups}}
-        {{#if isFaq}}
-            {{> includes/group }}
-        {{/if}}
-    {{/each}}
-</ul>
+{{#if hasFaqs}}
+    <ul class='atoms atoms--faqs'>
+        <h1 class='atoms__title'>What else is happening with this?</h1>
+        {{#each groups}}
+            {{#if isFaq}}
+                {{> includes/group }}
+            {{/if}}
+        {{/each}}
+    </ul>
+{{/if}}
