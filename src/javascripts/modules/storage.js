@@ -27,21 +27,20 @@ module.exports = {
                         if ($(el).visible()) {
                             $(el).addClass('has-read');
 
+                            var seen = this.get('seen');
+
                             // TODO add number of times seen in here
                             var object = {
                                 id: id,
                                 time: new Date()
                             };
 
-                            var seen = this.get('seen');
-
-                            if (seen) {
-                                seen.push(object);
-                                this.set('seen', seen);
-                            } else {
-                                this.set('seen', [object]);
+                            if (!seen) {
+                                seen = {};
                             }
 
+                            seen[id] = object;
+                            this.set('seen', seen);
                         } else {
                             clearTimeout(timers[id]);
                             delete timers[id];

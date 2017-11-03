@@ -49,7 +49,7 @@ module.exports = {
 
         for (var i in seen) {
             if ((now - new Date(seen[i].time)) > (10 * 60 * 1000)) {
-                sentSeen.push(seen[i].id);
+                sentSeen.push(i);
             }
         }
 
@@ -81,8 +81,6 @@ module.exports = {
 
         var headerTemplate = handlebars.compile(headerHtml);
         $('.header-container').html(headerTemplate(data));
-
-        console.log(headerTemplate(data));
 
         callback();
     }
