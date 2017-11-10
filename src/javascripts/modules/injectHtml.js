@@ -17,8 +17,10 @@ module.exports = {
         var apiPath = isDebug == undefined ? 'https://bob.gdnmobilelab.com' : 'http://localhost:3000';
         var path = apiPath + '/?id=' + $('body').attr('data-id') + '&seen=' + this.calculateSeenAtomsToSend() + '&visit=' + (storage.get('visit') ? storage.get('visit') : 1);
 
-        $('.banner').attr('style', 'display: block;');
-        $('.banner__copy').text('Seen:' + this.calculateSeenAtomsToSend() + ' | Visit:' + (storage.get('visit') ? storage.get('visit') : 1));
+        if (isDebug) {
+            $('.banner').attr('style', 'display: block;');
+            $('.banner__copy').text('Seen:' + this.calculateSeenAtomsToSend() + ' | Visit:' + (storage.get('visit') ? storage.get('visit') : 1));
+        }
 
         $.get(path, function(data) {
             this.createHTML(data);
@@ -86,6 +88,8 @@ module.exports = {
         if ($('.atoms--main').is(':empty')) {
             $('html').addClass('is-empty');
         }
+
+        $('body').addClass('has-loaded');
 
         callback();
     }

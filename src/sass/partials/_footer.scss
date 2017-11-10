@@ -7,6 +7,11 @@
     line-height: 22px;
     font-family: 'Guardian Sans Web';
     word-wrap: break-word;
+    display: none;
+
+    .has-loaded & {
+        display: block;
+    }
 
     a {
         color: $c-grey;
