@@ -1,5 +1,6 @@
 var $ = require('../vendor/jquery.js');
 var load = require('scriptloader');
+var analytics = require('../modules/analytics.js');
 
 var OneSignal, pageId;
 
@@ -78,10 +79,13 @@ module.exports = {
                 }
                 OneSignal.sendTag(pageId, 'subscribed');
                 $('.notifications').removeClass('not-subscribed').addClass('is-subscribed');
+
+                analytics.send('Notification', 'Subscribe', 'Subscribe', '');
             });
         } else {
             OneSignal.deleteTag(pageId);
             $('.notifications').removeClass('is-subscribed').addClass('not-subscribed');
+            analytics.send('Notification', 'Unsubscribe', 'Unsubscribe', '');
         }
     }
 }

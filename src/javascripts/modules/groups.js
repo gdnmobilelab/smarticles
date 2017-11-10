@@ -1,4 +1,5 @@
 var $ = require('../vendor/jquery.js');
+var analytics = require('../modules/analytics');
 
 module.exports = {
     init: function() {
@@ -41,9 +42,12 @@ module.exports = {
 
     expandGroup: function(el) {
         var $group = $(el).parent();
+        var $firstAtom = $group.find('.atom').first();
 
         $group.removeClass('group--collapsed');
         $group.addClass('group--expanded');
+
+        analytics.send('Atom engagment', 'Expand', $firstAtom.attr('data-id'), '', $firstAtom.attr('data-weight'), $firstAtom.attr('data-type'));
 
         $group.find('.atom').each(function(i, el) {
             $(el).css({

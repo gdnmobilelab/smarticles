@@ -1,7 +1,9 @@
 var $ = require('../vendor/jquery.js');
 var visible = require('../vendor/jquery.visible.js');
+var analytics = require('../modules/analytics');
 
-var timers = {};
+var timers = {},
+    analyticsTimers = {};
 
 module.exports = {
     init: function() {
@@ -19,8 +21,14 @@ module.exports = {
 
     checkAtomsInView: function() {
         $('.atom').each(function(i, el) {
+            var id = $(el).attr('data-id');
             if ($(el).visible()) {
-                var id = $(el).attr('data-id');
+
+                if (!analyticsTimers[id]) {
+                    analyticsTimers[id] = new Date();
+                    analytics.send('Atom Engagement', 'Show', id, '', $(el).attr('data-weight'), $(el).attr('data-type'));
+                }
+
                 if (!$(el).hasClass('has-read') && !timers[id]) {
 
                     timers[id] = setTimeout(function() {
@@ -47,6 +55,12 @@ module.exports = {
                         }
                     }.bind(this), 2000);
                 }
+            } else if (!$(el).visible() && analyticsTimers[id]) {
+                var delta = new Date() - analyticsTimers[id];
+
+                analytics.send('Atom Engagement', 'Time', id, delta, $(el).attr('data-weight'), $(el).attr('data-type'));
+
+                delete analyticsTimers[id];
             }
         }.bind(this));
     },
