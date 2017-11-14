@@ -2,7 +2,7 @@ var $ = require('../vendor/jquery.js');
 
 module.exports = {
     init: function() {
-        // this.checkForNotifications();
+        this.checkForNotifications();
     },
 
     checkForNotifications: function() {

@@ -85,7 +85,7 @@ module.exports = {
         var headerTemplate = handlebars.compile(headerHtml);
         $('.header-container').html(headerTemplate(data));
 
-        if ($('.atoms--main').is(':empty')) {
+        if ($('.atoms--main').children().length <= 0) {
             $('html').addClass('is-empty');
         }
 
