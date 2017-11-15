@@ -53,7 +53,7 @@ module.exports = {
                             clearTimeout(timers[id]);
                             delete timers[id];
                         }
-                    }.bind(this), 2000);
+                    }.bind(this), 1250);
                 }
             } else if (!$(el).visible() && analyticsTimers[id]) {
                 var delta = new Date() - analyticsTimers[id];
