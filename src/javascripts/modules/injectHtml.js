@@ -13,9 +13,12 @@ module.exports = {
     },
 
     fetchData: function() {
-        var isDebug = $('body').attr('data-is-debug');
-        var apiPath = isDebug == undefined ? 'https://bob.gdnmobilelab.com' : 'http://localhost:3000';
-        var path = apiPath + '/?id=' + $('body').attr('data-id') + '&seen=' + this.calculateSeenAtomsToSend() + '&visit=' + (storage.get('visit') ? storage.get('visit') : 1);
+        var useLocal = $('body').attr('data-is-debug');
+        var apiPath = useLocal == undefined ? 'https://bob.gdnmobilelab.com' : 'http://localhost:3000';
+
+        var isDebug = window.location.href.indexOf("?debug") > -1 ? true : false;
+
+        var path = apiPath + '/?id=' + $('body').attr('data-id') + '&seen=' + this.calculateSeenAtomsToSend() + '&visit=' + (storage.get('visit') ? storage.get('visit') : 1) + (isDebug ? '&debug=true': '');
 
         if (isDebug) {
             $('.banner').attr('style', 'display: block;');

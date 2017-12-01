@@ -49,11 +49,12 @@ module.exports = {
 
                             seen[id] = object;
                             this.set('seen', seen);
+                            console.log('seen ' + id + ' after ' + $(el).attr('data-time-until-read'));
                         } else {
                             clearTimeout(timers[id]);
                             delete timers[id];
                         }
-                    }.bind(this), 1250);
+                    }.bind(this), parseInt($(el).attr('data-time-until-read')));
                 }
             } else if (!$(el).visible() && analyticsTimers[id]) {
                 var delta = new Date() - analyticsTimers[id];
