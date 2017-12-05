@@ -39,7 +39,7 @@ module.exports = {
         var sentSeen = [];
 
         for (var i in seen) {
-            if ((now - new Date(seen[i].time)) > (10 * 60 * 1000)) {
+            if ((now - new Date(seen[i].time)) > (1 * 60 * 1000)) {
                 sentSeen.push(i);
             }
         }
