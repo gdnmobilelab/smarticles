@@ -8,6 +8,7 @@ module.exports = {
     init: function() {
         this.loadOneSignal();
         this.setValues();
+        this.removeNotificationUrl();
     },
 
     loadOneSignal: function() {
@@ -87,5 +88,11 @@ module.exports = {
             $('.notifications').removeClass('is-subscribed').addClass('not-subscribed');
             analytics.send('Notification', 'Unsubscribe', 'Unsubscribe', '');
         }
+    },
+
+    removeNotificationUrl: function() {
+        setTimeout(function() {
+            window.history.replaceState({}, document.title, "/");
+        }, 1000);
     }
 }

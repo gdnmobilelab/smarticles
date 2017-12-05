@@ -49,7 +49,6 @@ module.exports = {
 
                             seen[id] = object;
                             this.set('seen', seen);
-                            console.log('seen ' + id + ' after ' + $(el).attr('data-time-until-read'));
                         } else {
                             clearTimeout(timers[id]);
                             delete timers[id];

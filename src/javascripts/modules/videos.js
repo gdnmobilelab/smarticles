@@ -14,7 +14,6 @@ module.exports = {
             $(el).attr('id', 'ytplayer' + i);
             players[i] = $(el).attr('id');
         });
-        console.log(players);
     },
 
     loadYouTubeAPI: function() {
@@ -36,7 +35,6 @@ module.exports = {
     },
 
     onPlayerStateChange: function(event) {
-        console.log(event);
         var state = event.data;
         var $atom = $(event.target.a).parent().parent();
 
