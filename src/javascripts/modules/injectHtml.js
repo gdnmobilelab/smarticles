@@ -23,7 +23,6 @@ module.exports = {
 
         if (isDebug) {
             $('.banner').attr('style', 'display: block;');
-            $('.banner__copy').text('Seen:' + this.calculateSeenAtomsToSend() + ' | Visit:' + (storage.get('visit') ? storage.get('visit') : 1));
         }
 
         analytics.send('API Request', 'Sent', path);

@@ -31,7 +31,6 @@ module.exports = {
                 }
             });
         }
-        console.log(players);
     },
 
     onPlayerStateChange: function(event) {
