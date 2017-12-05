@@ -14,10 +14,11 @@ module.exports = {
 
     send: function(category, action, label, value = 0, weight = null, type = null) {
         window.ga('send', 'event', category, action, label, value, {
-            'id': id,
-            'atomsPresented': atomsPresented,
-            'atomWeight': weight,
-            'atomType': type,
+            // custom dimensions are setup within GA
+            'dimension1': id,
+            'dimension2': atomsPresented,
+            'dimension3': weight,
+            'dimension4': type,
         })
     }
 }

@@ -1,5 +1,6 @@
 var $ = require('../vendor/jquery.js');
 var storage = require('../modules/storage.js');
+var analytics = require('../modules/analytics.js');
 
 var handlebars = require('handlebars');
 
@@ -24,6 +25,8 @@ module.exports = {
             $('.banner').attr('style', 'display: block;');
             $('.banner__copy').text('Seen:' + this.calculateSeenAtomsToSend() + ' | Visit:' + (storage.get('visit') ? storage.get('visit') : 1));
         }
+
+        analytics.send('API Request', 'Sent', path);
 
         $.get(path, function(data) {
             this.createHTML(data);

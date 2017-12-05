@@ -80,7 +80,7 @@ module.exports = {
                 OneSignal.sendTag(pageId, 'subscribed');
                 $('.notifications').removeClass('not-subscribed').addClass('is-subscribed');
 
-                analytics.send('Notification', 'Subscribe', 'Subscribe', '');
+                analytics.send('Notification', 'Subscribe', 'Subscribe');
             });
         } else {
             OneSignal.deleteTag(pageId);
