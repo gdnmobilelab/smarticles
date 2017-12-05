@@ -7,7 +7,7 @@ module.exports = {
 
     checkForNotifications: function() {
         if ('Notification' in self && 'serviceWorker' in navigator) {
-            $('.banner').hide();
+            // Yey for notifications
         } else {
             $('.banner').show();
         }

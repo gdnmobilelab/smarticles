@@ -23,6 +23,7 @@ module.exports = {
 
         if (isDebug) {
             $('.banner').attr('style', 'display: block;');
+            $('.banner__copy').text('You\'re in Debug mode, this shows you all atoms directly from the spreadsheet. This may take a second or two...');
         }
 
         analytics.send('API Request', 'Sent', path);
