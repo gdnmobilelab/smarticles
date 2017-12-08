@@ -14,12 +14,15 @@ module.exports = {
     },
 
     fetchData: function() {
-        var useLocal = $('body').attr('data-is-debug');
+        var useLocal = $('body').attr('data-use-local');
         var apiPath = useLocal == undefined ? 'https://bob.gdnmobilelab.com' : 'http://localhost:3000';
 
         var isDebug = window.location.href.indexOf("?debug") > -1 ? true : false;
 
-        var path = apiPath + '/?id=' + $('body').attr('data-id') + '&seen=' + this.calculateSeenAtomsToSend() + '&visit=' + (storage.get('visit') ? storage.get('visit') : 1) + (isDebug ? '&debug=true': '');
+        var notified = new URLSearchParams(window.location.search);
+            notified = notified.get('notified');
+
+        var path = apiPath + '/?id=' + $('body').attr('data-id') + '&seen=' + this.calculateSeenAtomsToSend() + '&visit=' + (storage.get('visit') ? storage.get('visit') : 1) + (isDebug ? '&debug=true': '') + (notified ? '&notified=' + notified : '');
 
         if (isDebug) {
             $('.banner').attr('style', 'display: block;');

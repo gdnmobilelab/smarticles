@@ -9,7 +9,7 @@ module.exports = function(useLocalAPI) {
 
     var res = request('GET', path + '/?id=' + config.id + '&seen=0');
     var data = JSON.parse(res.body.toString());
-        data.isDebug = useLocalAPI;
+        data.useLocalAPI = useLocalAPI;
 
     return data;
 };

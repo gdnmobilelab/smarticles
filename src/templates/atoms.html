@@ -5,6 +5,10 @@
 </div>
 
 <ul class='atoms atoms--main'>
+    {{#if notified}}
+        {{> includes/group notified }}
+    {{/if}}
+
     {{#each groups}}
         {{#unless isFaq}}
             {{> includes/group }}
