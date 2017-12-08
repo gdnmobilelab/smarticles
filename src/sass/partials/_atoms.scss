@@ -1,7 +1,7 @@
 .atoms {
     margin: 0 auto;
     list-style: none;
-    font-family: 'Guardian Sans Web';
+    font-family: 'Guardian Text Egyptian Web';
     z-index: 5;
     position: relative;
     padding: 0 10px;
@@ -26,6 +26,8 @@
     line-height: 28px;
     padding: 6px 0 24px;
     color: $c-blue;
+    font-family: 'Guardian Egyptian Web';
+    font-weight: bold;
 }
 
 .atom {
@@ -34,6 +36,7 @@
     transition: ease-out 0.5s margin-top, ease-out 0.5s background-color, ease-out 0.2s transform;
     position: relative;
     padding: 4px 6px 12px;
+    font-family: 'Guardian Text Egyptian Web';
     font-size: 16px;
     line-height: 22px;
     color: $c-black;
@@ -57,10 +60,14 @@
 }
 
 .atom__title {
-    font-size: 16px;
+    font-size: 20px;
+    line-height: 1.2;
     font-weight: bold;
     color: $c-blue;
     margin: 0;
+    margin-bottom: 4px;
+    font-family: 'Guardian Egyptian Web';
+    font-weight: bold;
 }
 
 .atom + .atom .atom__title {

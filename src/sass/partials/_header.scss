@@ -2,7 +2,7 @@
     background-color: $c-light-blue;
     color: $c-white;
     padding-bottom: 48px;
-    font-family: 'Guardian Sans Web';
+    font-family: 'Guardian Egyptian Web';
     margin-bottom: -42px;
 
     .is-empty & {
@@ -32,10 +32,12 @@
     margin-top: 0;
     font-size: 16px;
     line-height: 22px;
+    font-family: 'Guardian Text Egyptian Web';
 }
 
 .header__updated {
     position: relative;
+    font-family: 'Guardian Sans Web';
 }
 
 .header__what {
