@@ -1,0 +1,32 @@
+.atom-link__link {
+    display: block;
+    text-align: right;
+    text-decoration: none;
+
+    &:hover {
+        .atom-link__button {
+            opacity: 0.8;
+        }
+    }
+}
+
+.atom-link__copy {
+    font-family: 'Guardian Sans Web';
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 1.2;
+    color: $c-light-blue;
+}
+
+.atom-link__button {
+    display: inline-block;
+    vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: $c-light-blue;
+    background-image: url('assets/images/forward.svg');
+    background-size: contain;
+    background-position: center center;
+    background-repeat: no-repeat;
+}

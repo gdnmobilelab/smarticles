@@ -62,6 +62,7 @@ module.exports = {
                 text: require('../../templates/atoms/text.html'),
                 tweet: require('../../templates/atoms/tweet.html'),
                 video: require('../../templates/atoms/video.html'),
+                link: require('../../templates/atoms/link.html')
             },
             includes: {
                 group: require('../../templates/includes/group.html'),

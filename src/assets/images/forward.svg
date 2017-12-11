@@ -1,0 +1,11 @@
+<svg id="NoCircle" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <title>IconLibrary</title>
+  <path class="cls-1" d="M38.65,25.58L37,27.21h0L26.79,37.44l-1.1-1.11,8.53-10.19H12.5V23.86H34.22L25.69,13.67l1.1-1.1L37,22.79h0l1.63,1.63v1.16Z"/>
+</svg>
