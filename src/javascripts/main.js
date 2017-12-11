@@ -7,6 +7,7 @@ var notifications = require('./modules/notifications');
 var storage = require('./modules/storage');
 var analytics = require('./modules/analytics');
 var videos = require('./modules/videos');
+var tweets = require('./modules/tweets');
 
 injectHtml.init(function() {
     banner.init();
@@ -16,5 +17,6 @@ injectHtml.init(function() {
     notifications.init();
     storage.init();
     videos.init();
+    tweets.init();
     analytics.init();
 });
