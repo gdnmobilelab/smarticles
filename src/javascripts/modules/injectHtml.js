@@ -30,6 +30,7 @@ module.exports = {
         }
 
         analytics.send('API Request', 'Sent', path);
+        analytics.send('Visit', 'Visit', (storage.get('visit') ? storage.get('visit') : 1));
 
         $.get(path, function(data) {
             this.createHTML(data);
