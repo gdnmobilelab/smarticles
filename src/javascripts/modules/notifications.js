@@ -93,7 +93,7 @@ module.exports = {
     removeNotificationUrl: function() {
         setTimeout(function() {
             if (window.location.search.indexOf('debug') === -1) {
-                window.history.replaceState({}, document.title, "/");
+                window.history.replaceState({}, document.title, window.location.pathname);
             }
         }, 1000);
     }
