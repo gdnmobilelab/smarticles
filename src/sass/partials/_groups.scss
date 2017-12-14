@@ -20,6 +20,13 @@
     border-top: 1px solid $c-blue;
     max-width: 400px;
     margin: 0 auto;
+
+    @for $i from 1 through 4 {
+        .atom[data-shrink='#{$i}'] {
+            transition-delay: 0.1s * $i;
+            z-index: ($i - 9) * -1;
+        }
+    }
 }
 
 .group--expanded {
