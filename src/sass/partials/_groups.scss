@@ -9,8 +9,8 @@
     width: 40px;
     height: 40px;
     border-radius: 36px;
-    margin-top: -34px;
-    z-index: 2;
+    margin-top: 16px;
+    z-index: 12;
     position: relative;
     display: none;
 }
@@ -31,20 +31,31 @@
 }
 
 .group--collapsed {
+    position: relative;
     margin-bottom: 12px;
 
     .atom {
         margin-bottom: 0;
+        z-index: 10;
     }
 
     .atom + .atom + .group__expand-button {
         display: block;
     }
 
-    @for $i from 1 through 8 {
+    @for $i from 1 through 4 {
         .atom[data-shrink='#{$i}'] {
+            position: absolute;
             background-color: darken($c-light-grey, $i * 2%);
             transform: scale(-($i) * 0.02 + 1, 1);
+            bottom: 32px - ($i * 6px);
+            z-index: ($i - 9) * -1;
+        }
+    }
+
+    @for $i from 5 through 8 {
+        .atom[data-shrink='#{$i}'] {
+            opacity: 0;
         }
     }
 }
