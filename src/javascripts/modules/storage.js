@@ -22,7 +22,7 @@ module.exports = {
     checkAtomsInView: function() {
         $('.atom').each(function(i, el) {
             var id = $(el).attr('data-id');
-            if ($(el).visible()) {
+            if ($(el).visible(true)) {
 
                 if (!analyticsTimers[id]) {
                     analyticsTimers[id] = new Date();
