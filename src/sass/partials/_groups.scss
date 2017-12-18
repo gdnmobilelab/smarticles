@@ -63,6 +63,7 @@
     @for $i from 5 through 8 {
         .atom[data-shrink='#{$i}'] {
             opacity: 0;
+            display: none;
         }
     }
 }
