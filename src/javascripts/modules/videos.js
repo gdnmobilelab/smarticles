@@ -27,10 +27,20 @@ module.exports = {
         for (var i in players) {
             players[i] = new YT.Player(players[i], {
                 events: {
+                    'onReady': this.bindPlayer,
                     'onStateChange': this.onPlayerStateChange
                 }
             });
         }
+    },
+
+    bindPlayer: function(event) {
+        $(event.target.a).parent().addClass('is-ready');
+
+        $(event.target.a).parent().find('.atom-video__thumbnail').click(function() {
+            $(event.target.a).parent().removeClass('is-ready').addClass('is-playing');
+            event.target.playVideo();
+        }.bind(event));
     },
 
     onPlayerStateChange: function(event) {

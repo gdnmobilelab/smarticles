@@ -5,6 +5,56 @@
     padding-top: 56.25%;
     margin: 6px 0;
     margin-left: -8px;
+
+    &.is-playing {
+        .atom-video__button,
+        .atom-video__thumbnail {
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+
+    &.is-ready {
+        .atom-video__button {
+            opacity: 1;
+        }
+    }
+}
+
+.atom-video__button {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    margin: auto;
+    display: block;
+    vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: $c-light-blue;
+    background-image: url('assets/images/play.svg');
+    background-size: 120%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    transition: opacity 0.3s ease-out;
+}
+
+.atom-video__thumbnail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    transition: opacity 0.3s ease-out;
+    transition-delay: 0.2s;
 }
 
 .atom-video__iframe {

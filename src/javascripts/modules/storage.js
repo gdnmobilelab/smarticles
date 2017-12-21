@@ -20,6 +20,8 @@ module.exports = {
     },
 
     checkAtomsInView: function() {
+        return false;
+
         $('.atom').each(function(i, el) {
             var id = $(el).attr('data-id');
             if ($(el).visible(true)) {

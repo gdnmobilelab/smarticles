@@ -1,0 +1,11 @@
+<svg id="NoCircle" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <title>IconLibrary</title>
+  <polygon class="cls-1" points="36.55 24.61 18.8 17.3 18.18 17.78 18.18 32.24 18.8 32.7 36.55 25.39 36.55 24.61"/>
+</svg>
