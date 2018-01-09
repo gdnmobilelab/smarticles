@@ -1,7 +1,7 @@
 .notifications {
     display: flex;
     margin-bottom: 12px;
-    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: 1px solid $c-light-grey;
     padding-top: 7px;
     font-family: 'Guardian Sans Web';
 }
@@ -11,7 +11,7 @@
     width: 40px;
     height: 40px;
     border-radius: 20px;
-    background-color: $c-white;
+    background-color: $c-yellow;
 }
 
 .notification-icon {

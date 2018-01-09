@@ -1,9 +1,13 @@
 .header {
-    background-color: $c-blue;
-    color: $c-white;
-    padding-bottom: 48px;
+    background-color: $c-off-white;
+    color: $c-black;
+    padding-bottom: 12px;
     font-family: 'Guardian Egyptian Web';
-    margin-bottom: -42px;
+    margin-bottom: 12px;
+    background-image: repeating-linear-gradient(to bottom, $c-light-grey, $c-light-grey 0.0625rem, $c-white 0.0625rem, $c-white 0.25rem);
+    background-repeat: repeat-x;
+    background-position: bottom;
+    background-size: 0.0625rem 0.8125rem;
 
     .is-empty & {
         padding-bottom: 12px;
@@ -21,10 +25,12 @@
     margin: 0;
     padding: 6px 48px 12px 0;
     font-size: 38px;
+    line-height: 1.2;
     font-weight: bold;
+    color: $c-red;
     background-image: url('assets/images/roundel.svg');
     background-size: 36px;
-    background-position: right 8px;
+    background-position: right 12px;
     background-repeat: no-repeat;
 }
 
@@ -43,9 +49,9 @@
 .header__what {
     position: absolute;
     right: 0;
-    color: $c-white;
+    color: $c-black;
     text-decoration: none;
-    border-bottom: 1px solid $c-white;
+    border-bottom: 1px solid $c-grey;
 
     &:hover {
         opacity: 0.8;

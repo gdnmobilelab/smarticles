@@ -3,7 +3,7 @@
     background-repeat: no-repeat;
     background-size: 50%;
     background-position: center center;
-    background-color: $c-light-blue;
+    background-color: $c-yellow;
     margin: 0 auto;
     box-sizing: border-box;
     width: 40px;
@@ -16,10 +16,22 @@
 }
 
 .group {
+    position: relative;
     overflow: hidden; // This is added to prevent tall collapsed atoms from popping out
-    border-top: 1px solid $c-light-blue;
+    border-top: 1px solid $c-black;
     max-width: 400px;
     margin: 0 auto;
+
+    &:before {
+        content: '';
+        height: 1.45em;
+        width: 1px;
+        background-color: $c-black;
+        position: absolute;
+        z-index: 10;
+        left: 0;
+        top: 0;
+    }
 
     @for $i from 1 through 4 {
         .atom[data-shrink='#{$i}'] {
@@ -53,7 +65,7 @@
     @for $i from 1 through 4 {
         .atom[data-shrink='#{$i}'] {
             position: absolute;
-            background-color: darken($c-light-grey, $i * 2%);
+            background-color: darken($c-off-white, $i * 2%);
             transform: scale(-($i) * 0.02 + 1, 1);
             bottom: 32px - ($i * 6px);
             z-index: ($i - 9) * -1;

@@ -9,10 +9,15 @@
 }
 
 .atoms--faqs {
-    background-color: mix($c-white, $c-light-blue, 95%);
-    border-top: 2px solid $c-light-blue;
+    background-image: repeating-linear-gradient(to bottom, $c-light-grey, $c-light-grey 0.0625rem, $c-white 0.0625rem, $c-white 0.25rem);
+    background-repeat: repeat-x;
+    background-position: top;
+    background-size: 0.0625rem 0.8125rem;
+    background-color: $c-bluey-white;
     padding-bottom: 48px;
+    padding-top: 12px;
     margin-top: 24px;
+    border-bottom: $c-light-grey 1px solid;
 
     .has-no-atoms & {
         display: none;
@@ -26,7 +31,7 @@
     font-size: 24px;
     line-height: 28px;
     padding: 6px 0 24px;
-    color: $c-blue;
+    color: $c-red;
     font-family: 'Guardian Egyptian Web';
     font-weight: bold;
 }
@@ -41,7 +46,7 @@
     font-size: 16px;
     line-height: 22px;
     color: $c-black;
-    background-color: $c-light-grey;
+    background-color: $c-off-white;
 }
 
 .atom + .atom--text,
@@ -56,7 +61,7 @@
         right: 6px;
         height: 1px;
         margin: auto;
-        background-color: darken($c-light-grey, 5%);
+        background-color: $c-grey;
     }
 }
 
@@ -64,7 +69,7 @@
     font-size: 20px;
     line-height: 1.2;
     font-weight: bold;
-    color: $c-blue;
+    color: $c-red;
     margin: 0;
     margin-bottom: 4px;
     font-family: 'Guardian Egyptian Web';
