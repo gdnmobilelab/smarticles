@@ -4,35 +4,64 @@ var analytics = require('../modules/analytics.js');
 
 var handlebars = require('handlebars');
 
-var callback;
+var callback, params = {};
 
 module.exports = {
     init: function(addedCallback) {
         callback = addedCallback;
 
+        this.getParams();
         this.fetchData();
     },
 
+    getParams: function() {
+        var entries = new URLSearchParams(window.location.search).entries();
+
+        for (pair of entries) {
+            params[pair[0]] = pair[1];
+        }
+
+        if (params.debug == '') {
+            params.debug = true;
+        }
+
+        if (!params.id) {
+            params.id = $('body').attr('data-id');
+        }
+
+        if (!params.seen) {
+            params.seen = this.calculateSeenAtomsToSend();
+        }
+
+        if (!params.visit) {
+            var visit = storage.get('visit');
+            params.visit = visit ? visit : 1;
+        }
+
+        if (!params.apiQuery) {
+            params.apiQuery = $('body').attr('data-use-local') == undefined ? 'https://bob.gdnmobilelab.com' : 'http://localhost:3000';
+            params.apiQuery += '/?';
+
+            for (param in params) {
+                if (param !== 'apiQuery') {
+                    params.apiQuery += param + '=' + params[param] + '&';
+                }
+            }
+        }
+
+        console.log(params);
+    },
+
     fetchData: function() {
-        var useLocal = $('body').attr('data-use-local');
-        var apiPath = useLocal == undefined ? 'https://bob.gdnmobilelab.com' : 'http://localhost:3000';
-
-        var isDebug = window.location.href.indexOf("?debug") > -1 ? true : false;
-
-        var notified = new URLSearchParams(window.location.search);
-            notified = notified.get('notified');
-
-        var path = apiPath + '/?id=' + $('body').attr('data-id') + '&seen=' + this.calculateSeenAtomsToSend() + '&visit=' + (storage.get('visit') ? storage.get('visit') : 1) + (isDebug ? '&debug=true': '') + (notified ? '&notified=' + notified : '');
-
-        if (isDebug) {
+        if (params.debug) {
             $('.banner').attr('style', 'display: block;');
             $('.banner__copy').text('You\'re in Debug mode, this shows you all atoms directly from the spreadsheet. This may take a second or two...');
         }
 
-        analytics.send('API Request', 'Sent', path);
+        analytics.send('API Request', 'Sent', params.apiQuery);
         analytics.send('Visit', 'Visit', (storage.get('visit') ? storage.get('visit') : 1));
 
-        $.get(path, function(data) {
+        $.get(params.apiQuery, function(data) {
             this.createHTML(data);
         }.bind(this));
     },
@@ -73,7 +102,7 @@ module.exports = {
 
         handlebars.registerHelper("switch", function(value, options) {
             this._switch_value_ = value;
-            var html = options.fn(this); // Process the body of the switch block
+            var html = options.fn(this);
             delete this._switch_value_;
             return html;
         });
