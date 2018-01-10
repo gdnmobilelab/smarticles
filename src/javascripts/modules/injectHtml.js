@@ -48,8 +48,6 @@ module.exports = {
                 }
             }
         }
-
-        console.log(params);
     },
 
     fetchData: function() {
