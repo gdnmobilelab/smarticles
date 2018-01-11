@@ -38,15 +38,8 @@ module.exports = {
             params.visit = visit ? visit : 1;
         }
 
-        if (!params.apiQuery) {
-            params.apiQuery = $('body').attr('data-use-local') == undefined ? 'https://bob.gdnmobilelab.com' : 'http://localhost:3000';
-            params.apiQuery += '/?';
-
-            for (param in params) {
-                if (param !== 'apiQuery') {
-                    params.apiQuery += param + '=' + params[param] + '&';
-                }
-            }
+        if (!params.api) {
+            params.api = $('body').attr('data-use-local') == undefined ? 'https://bob.gdnmobilelab.com' : 'http://localhost:3000';
         }
     },
 
@@ -59,7 +52,9 @@ module.exports = {
         analytics.send('API Request', 'Sent', params.apiQuery);
         analytics.send('Visit', 'Visit', (storage.get('visit') ? storage.get('visit') : 1));
 
-        $.get(params.apiQuery, function(data) {
+        $.post(params.api, params).done(function(data) {
+            console.log(params);
+            console.log(data);
             this.createHTML(data);
         }.bind(this));
     },

@@ -7,9 +7,14 @@ module.exports = function(useLocalAPI) {
     console.log(chalk.green('Using API at ' + path));
     console.log(chalk.green('Using spreadsheet Id ' + config.id));
 
-    var res = request('GET', path + '/?id=' + config.id + '&seen=0');
+    var res = request('POST', path, { json: {
+        'id': config.id,
+        'seen': '0'
+    }});
+
     var data = JSON.parse(res.body.toString());
         data.useLocalAPI = useLocalAPI;
 
     return data;
 };
+ 
