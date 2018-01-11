@@ -9,7 +9,7 @@ module.exports = function(useLocalAPI) {
 
     var res = request('POST', path, { json: {
         'id': config.id,
-        'seen': '0'
+        'seen': ''
     }});
 
     var data = JSON.parse(res.body.toString());
