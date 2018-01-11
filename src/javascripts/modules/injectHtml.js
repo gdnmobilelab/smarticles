@@ -30,7 +30,7 @@ module.exports = {
         }
 
         if (!params.seen) {
-            params.seen = this.calculateSeenAtomsToSend();
+            params.seen = storage.get('seen');
         }
 
         if (!params.visit) {
@@ -57,20 +57,6 @@ module.exports = {
             console.log(data);
             this.createHTML(data);
         }.bind(this));
-    },
-
-    calculateSeenAtomsToSend: function() {
-        var seen = storage.get('seen');
-        var now = new Date();
-        var sentSeen = [];
-
-        for (var i in seen) {
-            if ((now - new Date(seen[i].time)) > (1 * 60 * 1000)) {
-                sentSeen.push(i);
-            }
-        }
-
-        return sentSeen.toString();
     },
 
     createHTML: function(data) {
