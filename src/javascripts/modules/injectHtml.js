@@ -53,8 +53,6 @@ module.exports = {
         analytics.send('Visit', 'Visit', (storage.get('visit') ? storage.get('visit') : 1));
 
         $.post(params.api, params).done(function(data) {
-            console.log(params);
-            console.log(data);
             this.createHTML(data);
         }.bind(this));
     },
