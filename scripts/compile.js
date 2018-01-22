@@ -14,6 +14,8 @@ fs.mkdirsSync('.build');
 var useLocalAPI = process.argv.slice(2);
 var data = getData(useLocalAPI);
 
+console.log(useLocalAPI);
+
 // HTML
 var html = fs.readFileSync('src/templates/index.html', 'utf8');
 var partials = glob.readdirSync('src/templates/**/*.html');
