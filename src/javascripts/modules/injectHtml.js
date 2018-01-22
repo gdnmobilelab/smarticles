@@ -38,6 +38,11 @@ module.exports = {
             params.visit = visit ? visit : 1;
         }
 
+        if (!params.onboarding) {
+            var onboarding = storage.get('onboarding');
+            params.onboarding = onboarding ? false : true;
+        }
+
         if (!params.api) {
             params.api = $('body').attr('data-use-local') == undefined ? 'https://bob.gdnmobilelab.com' : 'http://localhost:3000';
         }
@@ -53,6 +58,8 @@ module.exports = {
         analytics.send('Visit', 'Visit', (storage.get('visit') ? storage.get('visit') : 1));
 
         $.post(params.api, params).done(function(data) {
+            console.log(params);
+            console.log(data);
             this.createHTML(data);
         }.bind(this));
     },

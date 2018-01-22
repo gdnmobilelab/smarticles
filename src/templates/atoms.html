@@ -5,6 +5,10 @@
 </div>
 
 <ul class='atoms atoms--main'>
+    {{#if onboarding}}
+        {{> includes/group onboarding }}
+    {{/if}}
+
     {{#if notified}}
         {{> includes/group notified }}
     {{/if}}

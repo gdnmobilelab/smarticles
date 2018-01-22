@@ -80,6 +80,35 @@
     }
 }
 
+.group--onboarding {
+    background-color: $c-white;
+    border: 1px solid $c-light-grey;
+    margin-bottom: 24px;
+
+    &:before {
+        display: none;
+    }
+
+    .atom {
+        background-color: $c-white;
+        margin-bottom: 6px;
+    }
+
+    .atom__title {
+        display: inline;
+        color: $c-black;
+        background: linear-gradient(to bottom, $c-yellow 0%, $c-yellow 50%, $c-yellow 100%);
+        box-shadow: -6px 0 0 0 #ffe500;
+        margin-top: 3px;
+        padding-bottom: 2px;
+        padding-right: 3px;
+    }
+
+    .atom__copy {
+        margin-top: 6px;
+    }
+}
+
 .group--additional {
     margin-bottom: 24px;
     opacity: 0.5;
