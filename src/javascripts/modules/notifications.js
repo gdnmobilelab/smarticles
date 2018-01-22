@@ -1,6 +1,7 @@
 var $ = require('../vendor/jquery.js');
 var load = require('scriptloader');
 var analytics = require('../modules/analytics.js');
+var onboarding = require('../modules/onboarding.js');
 
 var OneSignal, pageId;
 
@@ -63,6 +64,9 @@ module.exports = {
         $('.notifications').removeClass('is-loading');
         $('.notifications').addClass('is-supported');
         $('.notifications').addClass(state);
+        if (state === 'not-subscribed') {
+            onboarding.init();
+        }
         this.bindings();
     },
 
