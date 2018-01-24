@@ -40,6 +40,7 @@ module.exports = {
 
         if (!params.onboarding) {
             var onboarding = storage.get('onboarding');
+            console.log(onboarding);
             params.onboarding = onboarding ? false : true;
         }
 

@@ -1,5 +1,6 @@
 var $ = require('../vendor/jquery.js');
 var analytics = require('../modules/analytics');
+var storage = require('../modules/storage');
 
 var scrollTop = 0, trigger = 0, hasTriggered = false, canTrigger = false;
 
@@ -11,6 +12,7 @@ module.exports = {
             this.bindings();
             this.setValues();
             this.updateValues();
+            storage.set('onboarding', true);
         }
     },
 
