@@ -6,7 +6,7 @@ var scrollTop = 0, trigger = 0, hasTriggered = false, canTrigger = false;
 
 module.exports = {
     init: function() {
-        canTrigger = $('.group--onboarding').length > -1;
+        canTrigger = $('.group--onboarding').length;
 
         if (canTrigger) {
             this.bindings();
