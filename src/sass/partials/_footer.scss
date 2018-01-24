@@ -15,11 +15,11 @@
 
     a {
         color: $c-grey;
-        border-bottom: 1px solid $c-light-blue;
+        border-bottom: 1px solid $c-grey;
         text-decoration: none;
 
         &:hover {
-            color: $c-light-blue;
+            color: $c-black;
         }
     }
 }
