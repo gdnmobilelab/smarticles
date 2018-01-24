@@ -64,6 +64,7 @@ module.exports = {
         $('.notifications').removeClass('is-loading');
         $('.notifications').addClass('is-supported');
         $('.notifications').addClass(state);
+
         if (state === 'not-subscribed') {
             onboarding.init();
         }
@@ -85,6 +86,7 @@ module.exports = {
                 OneSignal.sendTag(pageId, 'subscribed');
                 $('.notifications').removeClass('not-subscribed').addClass('is-subscribed');
 
+                onboarding.disableTriggerability();
                 analytics.send('Notification', 'Subscribe', 'Subscribe');
             });
         } else {
@@ -92,6 +94,10 @@ module.exports = {
             $('.notifications').removeClass('is-subscribed').addClass('not-subscribed');
             analytics.send('Notification', 'Unsubscribe', 'Unsubscribe', '');
         }
+
+        setTimeout(function() {
+            onboarding.closeOnboarding();
+        }.bind(this), 500);
     },
 
     removeNotificationUrl: function() {
