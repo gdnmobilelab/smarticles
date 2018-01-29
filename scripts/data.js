@@ -13,7 +13,9 @@ module.exports = function(useLocalAPI) {
     }});
 
     var data = JSON.parse(res.body.toString());
-        data.useLocalAPI = useLocalAPI;
+        if (useLocalAPI) {
+            data.useLocalAPI = useLocalAPI;
+        }
 
     return data;
 };

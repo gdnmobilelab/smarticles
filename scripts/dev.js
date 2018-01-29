@@ -5,11 +5,11 @@ var chalk = require( 'chalk' );
 
 var useLocalAPI = process.argv.slice(2);
 
-cmd.get('node scripts/compile.js -- ' + useLocalAPI);
+cmd.get('node scripts/compile.js ' + useLocalAPI);
 
 watch('./src/', { recursive: true }, function(evt, file) {
     console.log(chalk.yellow('Change to ' + file));
-    cmd.get('node scripts/compile.js -- ' + useLocalAPI);
+    cmd.get('node scripts/compile.js ' + useLocalAPI);
 });
 
 var file = new static.Server('./.build/', {

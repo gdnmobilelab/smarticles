@@ -1,12 +1,31 @@
 var $ = require('../vendor/jquery.js');
+var uniqid = require('uniqid');
 
-var id = 'UA-77348538-9',
-    atomsPresented;
+var id, atomsPresented;
 
 module.exports = {
     init: function() {
+        this.setUserId();
         this.setValues();
         this.bindings();
+    },
+
+    setUserId: function() {
+        id = this.getUserId();
+        console.log(id);
+        window.ga('set', 'userId', id);
+    },
+
+    getUserId: function() {
+        var idInStorage = localStorage.getItem('userId');
+
+        if (idInStorage) {
+            return idInStorage;
+        } else {
+            var newId = uniqid();
+            localStorage.setItem('userId', newId);
+            return newId;
+        }
     },
 
     setValues: function() {
