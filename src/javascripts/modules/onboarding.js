@@ -34,7 +34,9 @@ module.exports = {
     },
 
     setValues: function() {
-        trigger = $('.atom:eq(4)').offset().top;
+        if ($('.atom').length > 3) {
+            trigger = $('.atom:eq(4)').offset().top;
+        }
         this.updateValues();
     },
 
