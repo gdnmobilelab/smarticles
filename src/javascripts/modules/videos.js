@@ -48,10 +48,10 @@ module.exports = {
         var $atom = $(event.target.a).parent().parent();
 
         if (state === 1) {
-            analytics.send('Video', 'Play', event.target.j.videoData.title, '', $atom.attr('data-weight'), 'video');
+            analytics.send('Video', 'Play', event.target.j.videoData.title, 1, $atom.attr('data-weight'), 'video');
         }
         if (state === 2) {
-            analytics.send('Video', 'Pause', event.target.j.videoData.title, '', $atom.attr('data-weight'), 'video');
+            analytics.send('Video', 'Pause', event.target.j.videoData.title, 1, $atom.attr('data-weight'), 'video');
         }
     }
 }

@@ -45,7 +45,7 @@ module.exports = {
         $group.removeClass('group--collapsed');
         $group.addClass('group--expanded');
 
-        analytics.send('Atom engagment', 'Expand', $firstAtom.attr('data-id'), '', $firstAtom.attr('data-weight'), $firstAtom.attr('data-type'));
+        analytics.send('Atom engagment', 'Expand', $firstAtom.attr('data-id'), 1, $firstAtom.attr('data-weight'), $firstAtom.attr('data-type'));
 
         $group.children('.atom').first().attr('style', '');
 

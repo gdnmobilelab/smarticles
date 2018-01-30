@@ -12,6 +12,7 @@ module.exports = {
 
     setUserId: function() {
         id = this.getUserId();
+        console.log(id);
         window.ga('set', 'userId', id);
     },
 

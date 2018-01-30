@@ -26,7 +26,7 @@ module.exports = {
 
                 if (!analyticsTimers[id]) {
                     analyticsTimers[id] = new Date();
-                    analytics.send('Atom Engagement', 'Show', id, '', $(el).attr('data-weight'), $(el).attr('data-type'));
+                    analytics.send('Atom Engagement', 'Show', id, 1, $(el).attr('data-weight'), $(el).attr('data-type'));
                 }
 
                 if (!$(el).hasClass('has-read') && !timers[id]) {
