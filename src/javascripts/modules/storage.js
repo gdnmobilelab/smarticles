@@ -39,7 +39,7 @@ module.exports = {
 
                             var object = {
                                 id: id,
-                                time: seen[id] ? seen[id].time : new Date(),
+                                date: seen[id] ? seen[id].date : new Date(),
                                 seen: seen[id] ? seen[id].seen + 1 : 1
                             };
 
@@ -58,11 +58,20 @@ module.exports = {
             } else if (!$(el).visible() && analyticsTimers[id]) {
                 var delta = new Date() - analyticsTimers[id];
 
+                this.increaseAtomTimeInView(id, delta);
                 analytics.send('Atom Engagement', 'Time', id, delta, $(el).attr('data-weight'), $(el).attr('data-type'));
 
                 delete analyticsTimers[id];
             }
         }.bind(this));
+    },
+
+    increaseAtomTimeInView: function(id, time) {
+        var seen = this.get('seen');
+
+        seen[id].timeInView = seen[id].timeInView !== undefined ? seen[id].timeInView + time : time;
+
+        this.set('seen', seen);
     },
 
     increaseVisitCount: function() {
