@@ -22,7 +22,7 @@ module.exports = {
     checkAtomsInView: function() {
         $('.atom').each(function(i, el) {
             var id = $(el).attr('data-id');
-            if ($(el).visible(true)) {
+            if ($(el).visible(true) && id !== '') {
 
                 if (!analyticsTimers[id]) {
                     analyticsTimers[id] = new Date();
@@ -40,7 +40,8 @@ module.exports = {
                             var object = {
                                 id: id,
                                 date: seen[id] ? seen[id].date : new Date(),
-                                seen: seen[id] ? seen[id].seen + 1 : 1
+                                seen: seen[id] ? seen[id].seen + 1 : 1,
+                                timeInView: seen[id] ? seen[id].timeInView : 1
                             };
 
                             if (!seen) {
@@ -69,7 +70,9 @@ module.exports = {
     increaseAtomTimeInView: function(id, time) {
         var seen = this.get('seen');
 
-        seen[id].timeInView = seen[id].timeInView !== undefined ? seen[id].timeInView + time : time;
+        if (seen[id]) {
+            seen[id].timeInView = seen[id].timeInView + time;
+        }
 
         this.set('seen', seen);
     },
