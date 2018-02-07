@@ -38,6 +38,11 @@ module.exports = {
             params.visit = visit ? visit : 1;
         }
 
+        if (!params.lastVisited) {
+            var lastVisited = storage.get('lastVisited');
+            params.lastVisited = lastVisited ? lastVisited : '';
+        }
+
         if (!params.onboarding) {
             var onboarding = storage.get('onboarding');
             params.onboarding = onboarding ? false : true;
@@ -57,7 +62,10 @@ module.exports = {
         analytics.send('API Request', 'Sent', params.apiQuery);
         analytics.send('Visit', 'Visit', (storage.get('visit') ? storage.get('visit') : 1));
 
+        console.log(params);
+
         $.post(params.api, params).done(function(data) {
+            console.log(data);
             this.createHTML(data);
         }.bind(this));
     },
