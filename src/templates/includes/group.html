@@ -1,4 +1,4 @@
-<div class='group{{#if groupType }} group--{{ groupType }}{{/if}}'>
+<div class='group{{#if groupType }} group--{{ groupType }}{{/if}} {{#if isReintroduced }}group--is-reintroduced{{/if}}'>
     {{#each atoms}}
         <li class='atom atom--{{ type }}' data-id='{{ id }}' data-timestamp='{{ timeStamp }}' data-weight='{{ weighting }}' data-type='{{ type }}' data-time-until-read='{{ timeUntilRead }}' >
             {{#if showWeighting }}
