@@ -39,14 +39,15 @@ module.exports = {
         }.bind(this));
     },
 
-    send: function(category, action, label, value = 0, weight = null, type = null) {
+    send: function(category, action, label, value = 0, weight = null, type = null, isReintroduced = false) {
         window.ga('send', 'event', category, action, label, value, {
             // custom dimensions are setup within GA
             'dimension1': id,
             'dimension2': atomsPresented,
             'dimension3': weight,
             'dimension4': type,
-        })
+            'dimension5': isReintroduced
+        });
     },
 
     externalLink: function(url) {

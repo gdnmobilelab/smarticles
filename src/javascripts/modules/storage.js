@@ -26,7 +26,7 @@ module.exports = {
 
                 if (!analyticsTimers[id]) {
                     analyticsTimers[id] = new Date();
-                    analytics.send('Atom Engagement', 'Show', id, 1, $(el).attr('data-weight'), $(el).attr('data-type'));
+                    analytics.send('Atom Engagement', 'Show', id, 1, $(el).attr('data-weight'), $(el).attr('data-type'), $(el).parent().hasClass('group--is-reintroduced'));
                 }
 
                 if (!$(el).hasClass('has-read') && !timers[id]) {
@@ -60,7 +60,7 @@ module.exports = {
                 var delta = new Date() - analyticsTimers[id];
 
                 this.increaseAtomTimeInView(id, delta);
-                analytics.send('Atom Engagement', 'Time', id, delta, $(el).attr('data-weight'), $(el).attr('data-type'));
+                analytics.send('Atom Engagement', 'Time', id, delta, $(el).attr('data-weight'), $(el).attr('data-type'), $(el).parent().hasClass('group--is-reintroduced'));
 
                 delete analyticsTimers[id];
             }
