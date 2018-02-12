@@ -5,6 +5,10 @@
                 <span class='atom__weighting atom__weighting--{{ weighting }}'>{{ weighting }}</span>
             {{/if}}
 
+            {{#if ../isReintroduced }}
+                <span class='atom__reintroduced-label'>Guess who's back? This atom is back</span>
+            {{/if}}
+
             {{#if ../groupName}}
                 <h2 class='atom__title'>{{{ ../groupName }}}</h2>
             {{else}}

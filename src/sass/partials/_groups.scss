@@ -42,7 +42,9 @@
 }
 
 .group--is-reintroduced {
-    opacity: .4;
+    &:before {
+        height: 2.8em;
+    }
 }
 
 .group--expanded {
