@@ -78,6 +78,8 @@ module.exports = {
     },
 
     toggleSubscribe: function() {
+        var analyticsLabel = $('onboarding').hasClass('show') ? ' from Onboarding' : ' from top of page';
+
         if ($('.notifications').hasClass('not-subscribed')) {
             OneSignal.isPushNotificationsEnabled(function(isEnabled) {
                 if (!isEnabled) {
@@ -87,12 +89,12 @@ module.exports = {
                 $('.notifications').removeClass('not-subscribed').addClass('is-subscribed');
 
                 onboarding.disableTriggerability();
-                analytics.send('Notification', 'Subscribe', 'Subscribe');
+                analytics.send('Notification', 'Subscribe' + analyticsLabel, 'Subscribe' + analyticsLabel, '');
             });
         } else {
             OneSignal.deleteTag(pageId);
             $('.notifications').removeClass('is-subscribed').addClass('not-subscribed');
-            analytics.send('Notification', 'Unsubscribe', 'Unsubscribe', '');
+            analytics.send('Notification', 'Unsubscribe' + analyticsLabel, 'Unsubscribe' + analyticsLabel, '');
         }
 
         setTimeout(function() {

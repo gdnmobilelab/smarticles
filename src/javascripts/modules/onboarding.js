@@ -47,12 +47,14 @@ module.exports = {
     checkForPosition: function() {
         if (scrollTop > trigger && hasTriggered == false) {
             this.showOnboarding();
+            analytics.send('Onboarding', 'Pop-up Triggered', params.apiQuery);
         }
     },
 
     showOnboarding: function() {
         hasTriggered = true;
         $('.onboarding').addClass('show');
+        
     },
 
     closeOnboarding: function() {
