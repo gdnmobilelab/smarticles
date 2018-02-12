@@ -62,8 +62,6 @@ module.exports = {
                 this.increaseAtomTimeInView(id, delta);
                 analytics.send('Atom Engagement', 'Time', id, delta, $(el).attr('data-weight'), $(el).attr('data-type'), $(el).parent().hasClass('group--is-reintroduced'));
 
-                console.log(id);
-
                 delete analyticsTimers[id];
             }
         }.bind(this));
