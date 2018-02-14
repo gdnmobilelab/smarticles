@@ -35,7 +35,11 @@ module.exports = {
 
         if (!params.visit) {
             var visit = storage.get('visit');
-            params.visit = visit ? visit : 1;
+                visit = visit ? visit + 1 : 1;
+
+            storage.set('visit', visit);
+            analytics.send('Visit', 'Visit', visit);
+            params.visit = visit;
         }
 
         if (!params.lastVisited) {
@@ -60,7 +64,6 @@ module.exports = {
         }
 
         analytics.send('API Request', 'Sent', params.apiQuery);
-        analytics.send('Visit', 'Visit', (storage.get('visit') ? storage.get('visit') : 1));
 
         console.log(params);
 

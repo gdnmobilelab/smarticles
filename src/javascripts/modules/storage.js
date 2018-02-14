@@ -9,7 +9,6 @@ module.exports = {
     init: function() {
         this.set('lastVisited', new Date());
         this.bindings();
-        this.increaseVisitCount();
         this.checkAtomsInView();
     },
 
@@ -75,16 +74,6 @@ module.exports = {
         }
 
         this.set('seen', seen);
-    },
-
-    increaseVisitCount: function() {
-        var visitCount = this.get('visit');
-
-        if (visitCount) {
-            this.set('visit', visitCount + 1);
-        } else {
-            this.set('visit', 1);
-        }
     },
 
     read: function(slug) {
