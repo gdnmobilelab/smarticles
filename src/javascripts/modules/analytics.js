@@ -5,7 +5,6 @@ var id, atomsPresented;
 
 module.exports = {
     init: function() {
-        this.setUserId();
         this.setValues();
         this.bindings();
     },

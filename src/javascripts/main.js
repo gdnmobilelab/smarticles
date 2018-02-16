@@ -9,6 +9,8 @@ var analytics = require('./modules/analytics');
 var videos = require('./modules/videos');
 var tweets = require('./modules/tweets');
 
+analytics.setUserId();
+
 injectHtml.init(function() {
     banner.init();
     lastUpdated.init();
