@@ -30,6 +30,7 @@ module.exports = {
 
         $('.onboarding__dismiss').click(function() {
             this.closeOnboarding();
+            analytics.send('Onboarding', 'Pop-up Dismissed', 'Pop-up Dismissed', 1);
         }.bind(this));
     },
 
@@ -47,14 +48,13 @@ module.exports = {
     checkForPosition: function() {
         if (scrollTop > trigger && hasTriggered == false) {
             this.showOnboarding();
-            analytics.send('Onboarding', 'Pop-up Triggered', params.apiQuery);
+            analytics.send('Onboarding', 'Pop-up Triggered', 'Pop-up Triggered', 1);
         }
     },
 
     showOnboarding: function() {
         hasTriggered = true;
         $('.onboarding').addClass('show');
-        
     },
 
     closeOnboarding: function() {

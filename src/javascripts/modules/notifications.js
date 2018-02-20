@@ -85,16 +85,17 @@ module.exports = {
                 if (!isEnabled) {
                     OneSignal.registerForPushNotifications();
                 }
+
                 OneSignal.sendTag(pageId, 'subscribed');
                 $('.notifications').removeClass('not-subscribed').addClass('is-subscribed');
 
                 onboarding.disableTriggerability();
-                analytics.send('Notification', 'Subscribe' + analyticsLabel, 'Subscribe' + analyticsLabel, '');
+                analytics.send('Notification', 'Subscribe' + analyticsLabel, 'Subscribe' + analyticsLabel);
             });
         } else {
             OneSignal.deleteTag(pageId);
             $('.notifications').removeClass('is-subscribed').addClass('not-subscribed');
-            analytics.send('Notification', 'Unsubscribe' + analyticsLabel, 'Unsubscribe' + analyticsLabel, '');
+            analytics.send('Notification', 'Unsubscribe' + analyticsLabel, 'Unsubscribe' + analyticsLabel);
         }
 
         setTimeout(function() {
