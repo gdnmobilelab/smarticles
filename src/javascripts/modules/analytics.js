@@ -39,7 +39,6 @@ module.exports = {
     },
 
     send: function(category, action, label, value = 0, weight = null, type = null, isReintroduced = false) {
-        console.log(isReintroduced);
         window.ga('send', 'event', category, action, label, value, {
             // custom dimensions are setup within GA
             'dimension1': id,

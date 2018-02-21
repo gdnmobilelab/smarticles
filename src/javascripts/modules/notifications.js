@@ -78,7 +78,7 @@ module.exports = {
     },
 
     toggleSubscribe: function() {
-        var analyticsLabel = $('onboarding').hasClass('show') ? ' from Onboarding' : ' from top of page';
+        var analyticsLabel = $('.onboarding').hasClass('show') ? ' from Onboarding' : ' from top of page';
 
         if ($('.notifications').hasClass('not-subscribed')) {
             OneSignal.isPushNotificationsEnabled(function(isEnabled) {
